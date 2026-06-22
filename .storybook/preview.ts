@@ -20,20 +20,21 @@ const preview: Preview = {
     },
   },
   decorators: [
-    // Sincroniza o background do canvas com o tema selecionado
+    // Aplica classe dark + background correto no wrapper
+    // Garante que CSS variables e cores de texto funcionem em ambos os temas
     (Story, context) => {
       const isDark = (context.globals as Record<string, string>)['theme'] === 'dark';
       return React.createElement(
         'div',
-        { style: { background: isDark ? DARK_BG : LIGHT_BG, minHeight: '100%' } },
+        {
+          className: isDark ? 'dark' : '',
+          style: { background: isDark ? DARK_BG : LIGHT_BG, minHeight: '100%' },
+        },
         React.createElement(Story),
       );
     },
     withThemeByClassName({
-      themes: {
-        light: '',
-        dark: 'dark',
-      },
+      themes: { light: '', dark: 'dark' },
       defaultTheme: 'light',
     }),
   ],
