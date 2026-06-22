@@ -1,0 +1,97 @@
+/*
+ * @sua-arena/ui — Design Tokens
+ * Extraídos do projeto torneio (styles/_tokens.scss)
+ *
+ * Paleta base:
+ *   Laranja Solar:  #FF7E29  → hsl(25 100% 58%)
+ *   Ciano Areia:    #29E7FF  → hsl(190 100% 58%)
+ *   Branco Gelo:    #F5F7FA  → hsl(216 33% 97%)
+ *   Escuro:         #1A1D21  → hsl(214 11% 12%)
+ *
+ * Importe este arquivo uma vez na raiz da aplicação:
+ *   import '@sua-arena/ui/tokens.css';
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Superfícies ── */
+    --background:    216 33% 97%;   /* #F5F7FA - Branco Gelo        */
+    --foreground:    0 0% 20%;      /* #333333 - Texto escuro        */
+
+    --card:          0 0% 100%;     /* #FFFFFF                       */
+    --card-foreground: 0 0% 20%;
+
+    --popover:       0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* ── Marca ── */
+    --primary:       25 100% 58%;   /* #FF7E29 - Laranja Solar       */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:     190 100% 58%;  /* #29E7FF - Ciano Areia         */
+    --secondary-foreground: 0 0% 10%;
+
+    /* ── Suporte ── */
+    --muted:         216 20% 93%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent:        190 100% 58%;  /* #29E7FF - Ciano Areia         */
+    --accent-foreground: 0 0% 10%;
+
+    --destructive:   0 84% 60%;     /* Vermelho erro                 */
+    --destructive-foreground: 0 0% 100%;
+
+    /* ── Borda / Input / Foco ── */
+    --border:        216 20% 88%;
+    --input:         216 20% 88%;
+    --ring:          25 100% 58%;   /* Foco laranja                  */
+
+    /* ── Radius ── */
+    --radius:        0.5rem;
+  }
+
+  .dark {
+    --background:    214 11% 12%;   /* #1A1D21 - Cinza quase preto   */
+    --foreground:    216 33% 97%;   /* #F5F7FA - Branco Gelo         */
+
+    --card:          214 11% 15%;
+    --card-foreground: 216 33% 97%;
+
+    --popover:       214 11% 15%;
+    --popover-foreground: 216 33% 97%;
+
+    --primary:       25 100% 58%;   /* #FF7E29 - Laranja Solar       */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:     190 100% 58%;  /* #29E7FF - Ciano Areia         */
+    --secondary-foreground: 0 0% 10%;
+
+    --muted:         214 11% 20%;
+    --muted-foreground: 216 15% 60%;
+
+    --accent:        190 100% 58%;  /* #29E7FF - Ciano Areia         */
+    --accent-foreground: 0 0% 10%;
+
+    --destructive:   0 62% 30%;
+    --destructive-foreground: 216 33% 97%;
+
+    --border:        214 11% 20%;
+    --input:         214 11% 20%;
+    --ring:          25 100% 58%;
+  }
+}
+
+/* ── Keyframes para o Alert customizado ──────────────────────────────────── */
+@keyframes alert-in {
+  from { opacity: 0; transform: translateX(100%) scale(0.95); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes alert-out {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to   { opacity: 0; transform: translateX(100%) scale(0.95); }
+}
