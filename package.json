@@ -10,20 +10,20 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./icons": {
+      "types": "./dist/icons.d.ts",
       "import": "./dist/icons.mjs",
-      "require": "./dist/icons.js",
-      "types": "./dist/icons.d.ts"
+      "require": "./dist/icons.js"
     },
     "./tokens.css": "./dist/tokens.css",
     "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
       "import": "./dist/tailwind-preset.mjs",
-      "require": "./dist/tailwind-preset.js",
-      "types": "./dist/tailwind-preset.d.ts"
+      "require": "./dist/tailwind-preset.js"
     }
   },
   "files": [

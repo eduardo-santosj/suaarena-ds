@@ -16,8 +16,22 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   viteFinal: (config) => {
+    // Suprime warnings de "use client" dos pacotes Radix UI no build do Storybook.
+    // Esses diretivos sao validos em Next.js mas irrelevantes no Vite -- sao ruido, nao erros.
+    config.build = {
+      ...config.build,
+      rollupOptions: {
+        ...config.build?.rollupOptions,
+        onwarn(warning, warn) {
+          if (
+            warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+            warning.message.includes('"use client"')
+          ) {
+            return;
+          }
+          warn(warning);
+        },
+      },
+    };
     return config;
-  },
-};
-
-export default config;
+  }

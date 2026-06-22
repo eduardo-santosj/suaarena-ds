@@ -1,14 +1,14 @@
 /*
- * @eduardo-santosj/ui — Design Tokens
- * Extraídos do projeto torneio (styles/_tokens.scss)
+ * @eduardo-santosj/ui -- Design Tokens
+ * Extraidos do projeto torneio (styles/_tokens.scss)
  *
  * Paleta base:
- *   Laranja Solar:  #FF7E29  → hsl(25 100% 58%)
- *   Ciano Areia:    #29E7FF  → hsl(190 100% 58%)
- *   Branco Gelo:    #F5F7FA  → hsl(216 33% 97%)
- *   Escuro:         #1A1D21  → hsl(214 11% 12%)
+ *   Laranja Solar:  #FF7E29  -> hsl(25 100% 58%)
+ *   Ciano Areia:    #29E7FF  -> hsl(190 100% 58%)
+ *   Branco Gelo:    #F5F7FA  -> hsl(216 33% 97%)
+ *   Escuro:         #1A1D21  -> hsl(214 11% 12%)
  *
- * Importe este arquivo uma vez na raiz da aplicação:
+ * Importe este arquivo uma vez na raiz da aplicacao:
  *   import '@eduardo-santosj/ui/tokens.css';
  */
 
@@ -18,7 +18,7 @@
 
 @layer base {
   :root {
-    /* ── Superfícies ── */
+    /* -- Superficies -------------------------------------------------------- */
     --background:    216 33% 97%;   /* #F5F7FA - Branco Gelo        */
     --foreground:    0 0% 20%;      /* #333333 - Texto escuro        */
 
@@ -28,14 +28,14 @@
     --popover:       0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
-    /* ── Marca ── */
+    /* -- Marca -------------------------------------------------------------- */
     --primary:       25 100% 58%;   /* #FF7E29 - Laranja Solar       */
     --primary-foreground: 0 0% 100%;
 
     --secondary:     190 100% 58%;  /* #29E7FF - Ciano Areia         */
     --secondary-foreground: 0 0% 10%;
 
-    /* ── Suporte ── */
+    /* -- Suporte ------------------------------------------------------------ */
     --muted:         216 20% 93%;
     --muted-foreground: 0 0% 40%;
 
@@ -45,12 +45,12 @@
     --destructive:   0 84% 60%;     /* Vermelho erro                 */
     --destructive-foreground: 0 0% 100%;
 
-    /* ── Borda / Input / Foco ── */
+    /* -- Borda / Input / Foco ---------------------------------------------- */
     --border:        216 20% 88%;
     --input:         216 20% 88%;
     --ring:          25 100% 58%;   /* Foco laranja                  */
 
-    /* ── Radius ── */
+    /* -- Radius ------------------------------------------------------------ */
     --radius:        0.5rem;
   }
 
@@ -85,8 +85,7 @@
   }
 }
 
-
-/* ── Base styles (obrigatorio para text-foreground e bg-background herdarem) ── */
+/* -- Base styles (obrigatorio para text-foreground e bg-background herdarem) -- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -96,7 +95,7 @@
   }
 }
 
-/* ── Keyframes para o Alert customizado ──────────────────────────────────── */
+/* -- Keyframes para o Alert customizado ------------------------------------- */
 @keyframes alert-in {
   from { opacity: 0; transform: translateX(100%) scale(0.95); }
   to   { opacity: 1; transform: translateX(0) scale(1); }
@@ -104,4 +103,5 @@
 
 @keyframes alert-out {
   from { opacity: 1; transform: translateX(0) scale(1); }
-  to   { opacity: 0; transform: translateX(100%) scale(0.95)
+  to   { opacity: 0; transform: translateX(100%) scale(0.95); }
+}
