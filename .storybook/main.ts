@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import tailwindcss from '@tailwindcss/vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)', '../src/**/*.mdx'],
@@ -16,8 +17,10 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   viteFinal: (config) => {
+    // Tailwind v4 via plugin Vite (substitui PostCSS)
+    config.plugins = [...(config.plugins ?? []), tailwindcss()];
+
     // Suprime warnings de "use client" dos pacotes Radix UI no build do Storybook.
-    // Esses diretivos sao validos em Next.js mas irrelevantes no Vite -- sao ruido, nao erros.
     config.build = {
       ...config.build,
       rollupOptions: {

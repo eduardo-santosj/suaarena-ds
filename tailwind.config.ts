@@ -1,11 +1,16 @@
+/**
+ * tailwind.config.ts
+ *
+ * Em Tailwind v4 o config e CSS-first via @theme em tokens.css.
+ * Este arquivo e mantido apenas para compatibilidade com ferramentas
+ * que esperam um config JS (IntelliSense, lint, etc).
+ *
+ * O @tailwindcss/vite no Storybook detecta conteudo automaticamente.
+ */
 import type { Config } from 'tailwindcss';
-import preset from './src/tokens/tailwind-preset';
 
-/** Tailwind config para uso interno do Storybook */
 const config: Config = {
-  darkMode: ['class'],
   content: ['./src/**/*.{ts,tsx}'],
-  presets: [preset],
 };
 
 export default config;

@@ -101,21 +101,10 @@ export const Overview: Story = {
 npm install @eduardo-santosj/ui`}
           </pre>
           <pre className="bg-muted rounded-xl p-4 text-xs font-mono overflow-x-auto">
-{`// tailwind.config.ts
-import dsPreset from '@eduardo-santosj/ui/tailwind-preset';
-
-export default {
-  presets: [dsPreset],
-  content: [
-    './src/**/*.{ts,tsx}',
-    './node_modules/@eduardo-santosj/ui/dist/**',
-  ],
-};`}
+{`/* globals.css (ou layout.css) - Tailwind v4 */
+@import "@eduardo-santosj/ui/tokens.css";`}
           </pre>
-          <pre className="bg-muted rounded-xl p-4 text-xs font-mono overflow-x-auto">
-{`// globals.css (ou layout raiz)
-import '@eduardo-santosj/ui/tokens.css';`}
-          </pre>
+          <p className="text-xs text-muted-foreground">Tailwind v4: nao e necessario tailwind.config.ts — os tokens ja vem no CSS via @theme inline.</p>
         </Section>
 
         {/* Paleta */}
@@ -183,7 +172,7 @@ import '@eduardo-santosj/ui/tokens.css';`}
             {[
               { tech: 'React 18+', desc: 'Peer dependency' },
               { tech: 'TypeScript', desc: 'Tipagem forte end-to-end' },
-              { tech: 'Tailwind CSS 3+', desc: 'Preset incluido no pacote' },
+              { tech: 'Tailwind CSS v4', desc: 'CSS-first, @theme inline' },
               { tech: 'Radix UI', desc: 'Primitivos acessiveis' },
               { tech: 'shadcn/ui', desc: 'Estilo new-york' },
               { tech: 'Dark Mode', desc: 'Via classe .dark' },
@@ -199,9 +188,9 @@ import '@eduardo-santosj/ui/tokens.css';`}
 
       {/* Footer */}
       <div className="border-t mt-8 px-8 py-6 bg-muted/30">
-        <div className="max-w-4xl mx-auto flex items-center justify-between text-xs text-muted-foreground">
-          <span>@eduardo-santosj/ui - Design System</span>
-          <span>Eduardo Jacinto - eduardosantosj2@gmail.com</span>
+        <div className="max-w-4xl mx-auto flex items-center justify-between text-sm text-muted-foreground">
+          <span>@eduardo-santosj/ui &mdash; Design System</span>
+          <span>Tailwind v4 · shadcn/ui · Radix UI</span>
         </div>
       </div>
     </div>
