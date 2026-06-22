@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Terminal, AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import { Terminal, AlertCircle, CheckCircle2, Info as InfoIcon } from 'lucide-react';
 import { AlertBlock, AlertBlockTitle, AlertBlockDescription } from '../components/ui/alert-shadcn';
 
 const meta: Meta<typeof AlertBlock> = {
@@ -58,7 +58,7 @@ export const Info: Story = {
   name: 'Informativo (customizado)',
   render: () => (
     <AlertBlock className="border-blue-500/50 text-blue-700 dark:text-blue-400 [&>svg]:text-blue-600">
-      <Info className="h-4 w-4" />
+      <InfoIcon className="h-4 w-4" />
       <AlertBlockTitle>Novo formato disponível</AlertBlockTitle>
       <AlertBlockDescription>O Swiss System já está disponível para torneios com mais de 8 equipes.</AlertBlockDescription>
     </AlertBlock>

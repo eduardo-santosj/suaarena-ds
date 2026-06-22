@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CheckCircle, AlertCircle, Info } from 'lucide-react';
 import { Toaster } from '../components/ui/toaster';
 import { useToast } from '../components/ui/use-toast';
 import { Button } from '../components/ui/button';
@@ -45,12 +44,7 @@ export const Success: Story = {
       <Button
         onClick={() =>
           toast({
-            title: (
-              <span className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
-                Inscrição confirmada!
-              </span>
-            ) as React.ReactNode,
+            title: '✓ Inscrição confirmada!',
             description: 'Eduardo / Carlos — Categoria A, Beach Tennis.',
           })
         }
@@ -71,12 +65,7 @@ export const Destructive: Story = {
         onClick={() =>
           toast({
             variant: 'destructive',
-            title: (
-              <span className="flex items-center gap-2">
-                <AlertCircle className="h-4 w-4" />
-                Erro ao salvar placar
-              </span>
-            ) as React.ReactNode,
+            title: 'Erro ao salvar placar',
             description: 'Verifique sua conexão e tente novamente.',
             action: <ToastAction altText="Tentar novamente">Tentar novamente</ToastAction>,
           })
@@ -97,12 +86,7 @@ export const WithAction: Story = {
         variant="outline"
         onClick={() =>
           toast({
-            title: (
-              <span className="flex items-center gap-2">
-                <Info className="h-4 w-4 text-blue-500" />
-                Sorteio gerado
-              </span>
-            ) as React.ReactNode,
+            title: 'Sorteio gerado',
             description: 'O bracket foi sorteado com 16 duplas.',
             action: <ToastAction altText="Ver bracket">Ver bracket</ToastAction>,
           })

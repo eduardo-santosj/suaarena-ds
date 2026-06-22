@@ -3,11 +3,11 @@ import { Logo } from '../components/brand/Logo';
 
 /**
  * Regra de uso:
- * - variantes `*-dark`  → logo com texto escuro → usar sobre **fundo claro/branco**
- * - variantes `*-white` → logo com texto branco → usar sobre **fundo escuro/preto**
+ * - variantes `*-dark`  -> logo com texto escuro -> usar sobre fundo claro/branco
+ * - variantes `*-white` -> logo com texto branco -> usar sobre fundo escuro/preto
  *
  * Os decorators abaixo fixam o background correto para cada variante.
- * Alternar o tema do Storybook (light/dark) NÃO deve afetar o fundo — ele é sempre explícito.
+ * Alternar o tema do Storybook (light/dark) NAO deve afetar o fundo -- ele e sempre explicito.
  */
 
 const DARK_BG = '#1A1D21';
@@ -18,12 +18,11 @@ const meta: Meta<typeof Logo> = {
   component: Logo,
   tags: ['autodocs'],
   parameters: {
-    // Desabilita o background padrão do Storybook para não conflitar com os decorators
     backgrounds: { disable: true },
     docs: {
       description: {
         component:
-          'Logotipo SuaArena em 6 variantes. Variantes `*-dark` usam texto escuro (fundo claro). Variantes `*-white` usam texto branco (fundo escuro). Recebe `height` em px e calcula o width proporcionalmente.',
+          'Logotipo SuaArena em 6 variantes. Variantes *-dark usam texto escuro (fundo claro). Variantes *-white usam texto branco (fundo escuro). Recebe height em px e calcula o width proporcionalmente.',
       },
     },
   },
@@ -41,7 +40,6 @@ const meta: Meta<typeof Logo> = {
     },
     height: { control: { type: 'range', min: 24, max: 120, step: 4 } },
   },
-  // Decorator dinâmico: lê o variant do args e aplica o fundo correto automaticamente
   decorators: [
     (Story, context) => {
       const variant = (context.args.variant as string) ?? '';
@@ -62,39 +60,38 @@ export default meta;
 type Story = StoryObj<typeof Logo>;
 
 export const HorizontalDark: Story = {
-  name: 'Horizontal — texto escuro (fundo claro)',
+  name: 'Horizontal - texto escuro (fundo claro)',
   args: { variant: 'horizontal-dark', height: 40 },
 };
 
 export const HorizontalWhite: Story = {
-  name: 'Horizontal — texto branco (fundo escuro)',
+  name: 'Horizontal - texto branco (fundo escuro)',
   args: { variant: 'horizontal-white', height: 40 },
 };
 
 export const IconOrange: Story = {
-  name: 'Ícone laranja (fundo claro)',
+  name: 'Icone laranja (fundo claro)',
   args: { variant: 'icon-orange', height: 64 },
 };
 
 export const IconWhite: Story = {
-  name: 'Ícone branco (fundo escuro)',
+  name: 'Icone branco (fundo escuro)',
   args: { variant: 'icon-white', height: 64 },
 };
 
 export const VerticalDark: Story = {
-  name: 'Vertical — texto escuro (fundo claro)',
+  name: 'Vertical - texto escuro (fundo claro)',
   args: { variant: 'vertical-dark', height: 96 },
 };
 
 export const VerticalWhite: Story = {
-  name: 'Vertical — texto branco (fundo escuro)',
+  name: 'Vertical - texto branco (fundo escuro)',
   args: { variant: 'vertical-white', height: 96 },
 };
 
 export const AllVariants: Story = {
   name: 'Todas as variantes',
   parameters: { controls: { disable: true }, backgrounds: { disable: true } },
-  // Override o decorator do meta para renderizar ambas as seções
   decorators: [(Story) => <Story />],
   render: () => (
     <div className="space-y-4">

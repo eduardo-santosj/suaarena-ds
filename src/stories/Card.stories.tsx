@@ -79,7 +79,6 @@ interface MockChampionship {
   max_players?: number;
   status: 'active' | 'in_progress' | 'finished';
   registration_open: boolean;
-  image?: string;
 }
 
 function ChampionshipCardMock({
@@ -95,19 +94,18 @@ function ChampionshipCardMock({
     if (championship.status === 'finished')
       return <Badge variant="outline">Finalizado</Badge>;
     if (championship.registration_open)
-      return <Badge variant="secondary">Inscrições Abertas</Badge>;
+      return <Badge variant="secondary">Inscricoes Abertas</Badge>;
     return <Badge>Em Andamento</Badge>;
   };
 
   const getFormatLabel = () => {
-    if (championship.format === 'single') return 'Eliminação Simples';
-    if (championship.format === 'double') return 'Dupla Eliminação';
-    return 'Grupos + Eliminação';
+    if (championship.format === 'single') return 'Eliminacao Simples';
+    if (championship.format === 'double') return 'Dupla Eliminacao';
+    return 'Grupos + Eliminacao';
   };
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-      {/* Área de imagem — h-48 com gradiente + placeholder */}
       <div className="relative h-48 w-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
         <Trophy className="h-12 w-12 text-primary/40" />
         {showFavorite && (
@@ -118,17 +116,13 @@ function ChampionshipCardMock({
             onClick={(e) => { e.stopPropagation(); setIsFavorite((v) => !v); }}
             aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
           >
-            <Star
-              className={`h-5 w-5 ${isFavorite ? 'fill-yellow-400 text-yellow-400' : ''}`}
-            />
+            <Star className={`h-5 w-5 ${isFavorite ? 'fill-yellow-400 text-yellow-400' : ''}`} />
           </Button>
         )}
       </div>
 
       <CardHeader>
-        <div className="flex justify-between items-start gap-2">
-          <CardTitle className="text-xl line-clamp-2">{championship.name}</CardTitle>
-        </div>
+        <CardTitle className="text-xl line-clamp-2">{championship.name}</CardTitle>
         <p className="text-sm text-muted-foreground">{getFormatLabel()}</p>
       </CardHeader>
 
@@ -146,7 +140,7 @@ function ChampionshipCardMock({
         {championship.max_players && (
           <div className="flex items-center gap-2 text-sm min-w-0">
             <Users className="h-4 w-4 text-muted-foreground shrink-0" />
-            <span className="truncate">Máximo: {championship.max_players} jogadores</span>
+            <span className="truncate">Maximo: {championship.max_players} jogadores</span>
           </div>
         )}
       </CardContent>
@@ -159,15 +153,15 @@ function ChampionshipCardMock({
 }
 
 export const TournamentCard: Story = {
-  name: 'Card de torneio — Inscrições Abertas',
+  name: 'Card de torneio — Inscricoes Abertas',
   render: () => (
     <ChampionshipCardMock
       showFavorite
       championship={{
         id: '1',
-        name: 'Ftv Alto Paraná',
+        name: 'Ftv Alto Parana',
         format: 'double',
-        city: 'Alto Paraná',
+        city: 'Alto Parana',
         state: 'PR',
         event_date: '11/07/2026',
         status: 'active',
@@ -183,9 +177,9 @@ export const TournamentCardInProgress: Story = {
     <ChampionshipCardMock
       championship={{
         id: '2',
-        name: 'Open Verão 2025 — Beach Tennis',
+        name: 'Open Verao 2025 — Beach Tennis',
         format: 'double',
-        city: 'São Paulo',
+        city: 'Sao Paulo',
         state: 'SP',
         event_date: '15/03/2025',
         max_players: 64,
@@ -202,7 +196,7 @@ export const TournamentCardFinished: Story = {
     <ChampionshipCardMock
       championship={{
         id: '3',
-        name: 'Copa Inverno de Futevôlei',
+        name: 'Copa Inverno de Futevolei',
         format: 'groups',
         city: 'Curitiba',
         state: 'PR',

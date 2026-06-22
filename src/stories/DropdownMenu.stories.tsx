@@ -3,7 +3,7 @@ import { MoreHorizontal, Edit, Trash2, Eye, Copy } from 'lucide-react';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
-  DropdownMenuCheckboxItem, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger,
+  DropdownMenuCheckboxItem,
 } from '../components/ui/dropdown-menu';
 import { Button } from '../components/ui/button';
 

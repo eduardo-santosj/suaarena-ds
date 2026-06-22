@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Search, Trophy, Users, Calendar, Settings } from 'lucide-react';
 import {
-  Command, CommandDialog, CommandEmpty, CommandGroup,
+  Command, CommandEmpty, CommandGroup,
   CommandInput, CommandItem, CommandList, CommandSeparator,
   CommandShortcut,
 } from '../components/ui/command';
