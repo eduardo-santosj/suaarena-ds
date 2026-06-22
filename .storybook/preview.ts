@@ -18,6 +18,18 @@ const preview: Preview = {
     docs: {
       toc: true,
     },
+    options: {
+      storySort: {
+        order: [
+          'Design System',
+          ['Introduction', 'Colors', 'Typography'],
+          'Design Tokens',
+          'Domain',
+          'Composed',
+          '*',
+        ],
+      },
+    },
   },
   decorators: [
     // Aplica classe dark + background correto no wrapper
