@@ -1,15 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Logo } from '../components/brand/Logo';
 
-/**
- * Regra de uso:
- * - variantes `*-dark`  -> logo com texto escuro -> usar sobre fundo claro/branco
- * - variantes `*-white` -> logo com texto branco -> usar sobre fundo escuro/preto
- *
- * Os decorators abaixo fixam o background correto para cada variante.
- * Alternar o tema do Storybook (light/dark) NAO deve afetar o fundo -- ele e sempre explicito.
- */
-
 const DARK_BG = '#1A1D21';
 const LIGHT_BG = '#FFFFFF';
 
@@ -21,22 +12,14 @@ const meta: Meta<typeof Logo> = {
     backgrounds: { disable: true },
     docs: {
       description: {
-        component:
-          'Logotipo SuaArena em 6 variantes. Variantes *-dark usam texto escuro (fundo claro). Variantes *-white usam texto branco (fundo escuro). Recebe height em px e calcula o width proporcionalmente.',
+        component: 'Logotipo SuaArena em 6 variantes. Variantes *-dark usam texto escuro (fundo claro). Variantes *-white usam texto branco (fundo escuro).',
       },
     },
   },
   argTypes: {
     variant: {
       control: 'select',
-      options: [
-        'horizontal-dark',
-        'horizontal-white',
-        'icon-orange',
-        'icon-white',
-        'vertical-dark',
-        'vertical-white',
-      ],
+      options: ['horizontal-dark', 'horizontal-white', 'icon-orange', 'icon-white', 'vertical-dark', 'vertical-white'],
     },
     height: { control: { type: 'range', min: 24, max: 120, step: 4 } },
   },
@@ -45,10 +28,7 @@ const meta: Meta<typeof Logo> = {
       const variant = (context.args.variant as string) ?? '';
       const isWhiteVariant = variant.includes('white');
       return (
-        <div
-          style={{ backgroundColor: isWhiteVariant ? DARK_BG : LIGHT_BG }}
-          className="p-8 rounded-lg inline-flex"
-        >
+        <div style={{ backgroundColor: isWhiteVariant ? DARK_BG : LIGHT_BG }} className="p-8 rounded-lg inline-flex">
           <Story />
         </div>
       );
@@ -95,18 +75,12 @@ export const AllVariants: Story = {
   decorators: [(Story) => <Story />],
   render: () => (
     <div className="space-y-4">
-      <div
-        style={{ backgroundColor: LIGHT_BG }}
-        className="p-6 rounded-lg flex flex-wrap gap-8 items-center"
-      >
+      <div style={{ backgroundColor: LIGHT_BG }} className="p-6 rounded-lg flex flex-wrap gap-8 items-center">
         <Logo variant="horizontal-dark" height={36} />
         <Logo variant="icon-orange" height={48} />
         <Logo variant="vertical-dark" height={72} />
       </div>
-      <div
-        style={{ backgroundColor: DARK_BG }}
-        className="p-6 rounded-lg flex flex-wrap gap-8 items-center"
-      >
+      <div style={{ backgroundColor: DARK_BG }} className="p-6 rounded-lg flex flex-wrap gap-8 items-center">
         <Logo variant="horizontal-white" height={36} />
         <Logo variant="icon-white" height={48} />
         <Logo variant="vertical-white" height={72} />

@@ -1,13 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Trophy, Users, Calendar, MapPin, Star } from 'lucide-react';
 import { useState } from 'react';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from '../components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 
@@ -19,8 +13,7 @@ const meta: Meta<typeof Card> = {
     layout: 'centered',
     docs: {
       description: {
-        component:
-          'Container de conteúdo com borda e sombra. O `ChampionshipCard` é o layout principal utilizado na listagem de torneios.',
+        component: 'Container de conteudo com borda e sombra. O ChampionshipCard e o layout principal utilizado na listagem de torneios.',
       },
     },
   },
@@ -37,9 +30,7 @@ export const Default: Story = {
         <CardTitle>Torneio Beach Tennis</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground">
-          32 duplas inscritas. Fase de grupos em andamento.
-        </p>
+        <p className="text-sm text-muted-foreground">32 duplas inscritas. Fase de grupos em andamento.</p>
       </CardContent>
       <CardFooter className="gap-2">
         <Button size="sm">Ver bracket</Button>
@@ -50,13 +41,11 @@ export const Default: Story = {
 };
 
 export const StatCard: Story = {
-  name: 'Card de estatística',
+  name: 'Card de estatistica',
   render: () => (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          Duplas inscritas
-        </CardTitle>
+        <CardTitle className="text-sm font-medium text-muted-foreground">Duplas inscritas</CardTitle>
         <Users className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
@@ -66,8 +55,6 @@ export const StatCard: Story = {
     </Card>
   ),
 };
-
-// ─── ChampionshipCard — replica exata do componente usado no projeto torneio ───
 
 interface MockChampionship {
   id: string;
@@ -81,20 +68,12 @@ interface MockChampionship {
   registration_open: boolean;
 }
 
-function ChampionshipCardMock({
-  championship,
-  showFavorite = false,
-}: {
-  championship: MockChampionship;
-  showFavorite?: boolean;
-}) {
+function ChampionshipCardMock({ championship, showFavorite = false }: { championship: MockChampionship; showFavorite?: boolean }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const getStatusBadge = () => {
-    if (championship.status === 'finished')
-      return <Badge variant="outline">Finalizado</Badge>;
-    if (championship.registration_open)
-      return <Badge variant="secondary">Inscricoes Abertas</Badge>;
+    if (championship.status === 'finished') return <Badge variant="outline">Finalizado</Badge>;
+    if (championship.registration_open) return <Badge variant="secondary">Inscricoes Abertas</Badge>;
     return <Badge>Em Andamento</Badge>;
   };
 
@@ -120,12 +99,10 @@ function ChampionshipCardMock({
           </Button>
         )}
       </div>
-
       <CardHeader>
         <CardTitle className="text-xl line-clamp-2">{championship.name}</CardTitle>
         <p className="text-sm text-muted-foreground">{getFormatLabel()}</p>
       </CardHeader>
-
       <CardContent className="space-y-3">
         {championship.city && (
           <div className="flex items-center gap-2 text-sm min-w-0">
@@ -144,10 +121,7 @@ function ChampionshipCardMock({
           </div>
         )}
       </CardContent>
-
-      <CardFooter>
-        {getStatusBadge()}
-      </CardFooter>
+      <CardFooter>{getStatusBadge()}</CardFooter>
     </Card>
   );
 }
@@ -157,16 +131,7 @@ export const TournamentCard: Story = {
   render: () => (
     <ChampionshipCardMock
       showFavorite
-      championship={{
-        id: '1',
-        name: 'Ftv Alto Parana',
-        format: 'double',
-        city: 'Alto Parana',
-        state: 'PR',
-        event_date: '11/07/2026',
-        status: 'active',
-        registration_open: true,
-      }}
+      championship={{ id: '1', name: 'Ftv Alto Parana', format: 'double', city: 'Alto Parana', state: 'PR', event_date: '11/07/2026', status: 'active', registration_open: true }}
     />
   ),
 };
@@ -175,17 +140,7 @@ export const TournamentCardInProgress: Story = {
   name: 'Card de torneio — Em Andamento',
   render: () => (
     <ChampionshipCardMock
-      championship={{
-        id: '2',
-        name: 'Open Verao 2025 — Beach Tennis',
-        format: 'double',
-        city: 'Sao Paulo',
-        state: 'SP',
-        event_date: '15/03/2025',
-        max_players: 64,
-        status: 'in_progress',
-        registration_open: false,
-      }}
+      championship={{ id: '2', name: 'Open Verao 2025 — Beach Tennis', format: 'double', city: 'Sao Paulo', state: 'SP', event_date: '15/03/2025', max_players: 64, status: 'in_progress', registration_open: false }}
     />
   ),
 };
@@ -194,16 +149,7 @@ export const TournamentCardFinished: Story = {
   name: 'Card de torneio — Finalizado',
   render: () => (
     <ChampionshipCardMock
-      championship={{
-        id: '3',
-        name: 'Copa Inverno de Futevolei',
-        format: 'groups',
-        city: 'Curitiba',
-        state: 'PR',
-        event_date: '20/06/2025',
-        status: 'finished',
-        registration_open: false,
-      }}
+      championship={{ id: '3', name: 'Copa Inverno de Futevolei', format: 'groups', city: 'Curitiba', state: 'PR', event_date: '20/06/2025', status: 'finished', registration_open: false }}
     />
   ),
 };
