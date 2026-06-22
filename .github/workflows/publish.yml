@@ -17,9 +17,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@sua-arena'
+          scope: '@eduardo-santosj'
 
       - name: Install dependencies
         run: npm ci

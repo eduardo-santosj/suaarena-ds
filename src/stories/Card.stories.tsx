@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Trophy, Users, Calendar } from 'lucide-react';
+import { Trophy, Users, Calendar, MapPin, Star } from 'lucide-react';
+import { useState } from 'react';
 import {
   Card,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardContent,
   CardFooter,
 } from '../components/ui/card';
@@ -20,7 +20,7 @@ const meta: Meta<typeof Card> = {
     docs: {
       description: {
         component:
-          'Container de conteúdo com borda e sombra. Composto por `CardHeader`, `CardTitle`, `CardDescription`, `CardContent` e `CardFooter`.',
+          'Container de conteúdo com borda e sombra. O `ChampionshipCard` é o layout principal utilizado na listagem de torneios.',
       },
     },
   },
@@ -35,7 +35,6 @@ export const Default: Story = {
     <Card>
       <CardHeader>
         <CardTitle>Torneio Beach Tennis</CardTitle>
-        <CardDescription>Arena do Vale — 15 de março de 2025</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">
@@ -56,56 +55,161 @@ export const StatCard: Story = {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          Alunos ativos
+          Duplas inscritas
         </CardTitle>
         <Users className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-bold">142</div>
-        <p className="text-xs text-muted-foreground mt-1">
-          +8 este mês
-        </p>
+        <div className="text-3xl font-bold">32</div>
+        <p className="text-xs text-muted-foreground mt-1">+4 esta semana</p>
       </CardContent>
     </Card>
   ),
 };
 
-export const TournamentCard: Story = {
-  name: 'Card de torneio',
-  render: () => (
-    <Card className="overflow-hidden">
-      <div className="h-24 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-        <Trophy className="h-10 w-10 text-primary" />
+// ─── ChampionshipCard — replica exata do componente usado no projeto torneio ───
+
+interface MockChampionship {
+  id: string;
+  name: string;
+  format: 'single' | 'double' | 'groups';
+  city?: string;
+  state?: string;
+  event_date?: string;
+  max_players?: number;
+  status: 'active' | 'in_progress' | 'finished';
+  registration_open: boolean;
+  image?: string;
+}
+
+function ChampionshipCardMock({
+  championship,
+  showFavorite = false,
+}: {
+  championship: MockChampionship;
+  showFavorite?: boolean;
+}) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const getStatusBadge = () => {
+    if (championship.status === 'finished')
+      return <Badge variant="outline">Finalizado</Badge>;
+    if (championship.registration_open)
+      return <Badge variant="secondary">Inscrições Abertas</Badge>;
+    return <Badge>Em Andamento</Badge>;
+  };
+
+  const getFormatLabel = () => {
+    if (championship.format === 'single') return 'Eliminação Simples';
+    if (championship.format === 'double') return 'Dupla Eliminação';
+    return 'Grupos + Eliminação';
+  };
+
+  return (
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+      {/* Área de imagem — h-48 com gradiente + placeholder */}
+      <div className="relative h-48 w-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+        <Trophy className="h-12 w-12 text-primary/40" />
+        {showFavorite && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-2 bg-background/80 hover:bg-background"
+            onClick={(e) => { e.stopPropagation(); setIsFavorite((v) => !v); }}
+            aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+          >
+            <Star
+              className={`h-5 w-5 ${isFavorite ? 'fill-yellow-400 text-yellow-400' : ''}`}
+            />
+          </Button>
+        )}
       </div>
-      <CardHeader className="pt-4 pb-2">
-        <div className="flex items-start justify-between">
-          <CardTitle>Open Verão 2025</CardTitle>
-          <Badge variant="success">Ativo</Badge>
+
+      <CardHeader>
+        <div className="flex justify-between items-start gap-2">
+          <CardTitle className="text-xl line-clamp-2">{championship.name}</CardTitle>
         </div>
-        <CardDescription className="flex items-center gap-1">
-          <Calendar className="h-3 w-3" />
-          15 Mar — 17 Mar 2025
-        </CardDescription>
+        <p className="text-sm text-muted-foreground">{getFormatLabel()}</p>
       </CardHeader>
-      <CardContent>
-        <div className="flex gap-4 text-sm">
-          <div>
-            <p className="font-semibold">32</p>
-            <p className="text-xs text-muted-foreground">Duplas</p>
+
+      <CardContent className="space-y-3">
+        {championship.city && (
+          <div className="flex items-center gap-2 text-sm min-w-0">
+            <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
+            <span className="truncate">{championship.city}, {championship.state}</span>
           </div>
-          <div>
-            <p className="font-semibold">4</p>
-            <p className="text-xs text-muted-foreground">Categorias</p>
-          </div>
-          <div>
-            <p className="font-semibold">BT100</p>
-            <p className="text-xs text-muted-foreground">Nível</p>
-          </div>
+        )}
+        <div className="flex items-center gap-2 text-sm min-w-0">
+          <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
+          <span className="truncate">{championship.event_date}</span>
         </div>
+        {championship.max_players && (
+          <div className="flex items-center gap-2 text-sm min-w-0">
+            <Users className="h-4 w-4 text-muted-foreground shrink-0" />
+            <span className="truncate">Máximo: {championship.max_players} jogadores</span>
+          </div>
+        )}
       </CardContent>
+
       <CardFooter>
-        <Button className="w-full" size="sm">Abrir torneio</Button>
+        {getStatusBadge()}
       </CardFooter>
     </Card>
+  );
+}
+
+export const TournamentCard: Story = {
+  name: 'Card de torneio — Inscrições Abertas',
+  render: () => (
+    <ChampionshipCardMock
+      showFavorite
+      championship={{
+        id: '1',
+        name: 'Ftv Alto Paraná',
+        format: 'double',
+        city: 'Alto Paraná',
+        state: 'PR',
+        event_date: '11/07/2026',
+        status: 'active',
+        registration_open: true,
+      }}
+    />
+  ),
+};
+
+export const TournamentCardInProgress: Story = {
+  name: 'Card de torneio — Em Andamento',
+  render: () => (
+    <ChampionshipCardMock
+      championship={{
+        id: '2',
+        name: 'Open Verão 2025 — Beach Tennis',
+        format: 'double',
+        city: 'São Paulo',
+        state: 'SP',
+        event_date: '15/03/2025',
+        max_players: 64,
+        status: 'in_progress',
+        registration_open: false,
+      }}
+    />
+  ),
+};
+
+export const TournamentCardFinished: Story = {
+  name: 'Card de torneio — Finalizado',
+  render: () => (
+    <ChampionshipCardMock
+      championship={{
+        id: '3',
+        name: 'Copa Inverno de Futevôlei',
+        format: 'groups',
+        city: 'Curitiba',
+        state: 'PR',
+        event_date: '20/06/2025',
+        status: 'finished',
+        registration_open: false,
+      }}
+    />
   ),
 };
