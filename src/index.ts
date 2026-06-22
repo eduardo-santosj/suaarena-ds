@@ -178,7 +178,7 @@ export {
 } from './components/ui/table';
 
 // Tabs
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/ui/tabs';
+export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants } from './components/ui/tabs';
 
 // Textarea
 export { Textarea } from './components/ui/textarea';
@@ -218,7 +218,7 @@ export { Toaster } from './components/ui/toaster';
 export { useToast, toast } from './components/ui/use-toast';
 
 // Calendar
-export { Calendar } from './components/ui/calendar';
+export { Calendar, CalendarDayButton } from './components/ui/calendar';
 export type { CalendarProps } from './components/ui/calendar';
 
 // ==============================================================================
