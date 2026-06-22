@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss';
+
+type Preset = Omit<Config, 'content'>;
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const animate = require('tailwindcss-animate');
 
@@ -16,7 +18,7 @@ const animate = require('tailwindcss-animate');
  * };
  * ```
  */
-const preset: Config = {
+const preset: Preset = {
   darkMode: ['class'],
   theme: {
     extend: {

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type LogoVariant =
   | 'icon-orange'
   | 'icon-white'

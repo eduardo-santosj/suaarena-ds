@@ -33,7 +33,7 @@ const CONFIG: Record<AlertType, { icon: React.ElementType; bg: string; border: s
 export function Alert({ type, text, onClose, duration = 4000 }: AlertProps) {
   const { icon: Icon, bg, border } = CONFIG[type];
   const [closing, setClosing] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const dismiss = () => {
     if (closing) return;
