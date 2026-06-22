@@ -8,10 +8,10 @@ import { cn } from '../../lib/utils';
 export type TournamentFormat = 'single' | 'double' | 'groups' | 'swiss';
 
 const FORMAT_LABELS: Record<TournamentFormat, string> = {
-  single: 'Eliminacao Simples',
-  double: 'Dupla Eliminacao',
-  groups: 'Grupos + Eliminacao',
-  swiss:  'Sistema Suico',
+  single: 'Eliminação Simples',
+  double: 'Dupla Eliminação',
+  groups: 'Grupos + Eliminação',
+  swiss:  'Sistema Suíço',
 };
 
 export interface ChampionshipCardData {
@@ -109,7 +109,7 @@ export function ChampionshipCard({
         {championship.maxPlayers && (
           <div className="flex items-center gap-2 text-sm min-w-0">
             <Users className="h-4 w-4 text-muted-foreground shrink-0" aria-hidden="true" />
-            <span className="truncate">Maximo: {championship.maxPlayers} jogadores</span>
+            <span className="truncate">Máximo: {championship.maxPlayers} jogadores</span>
           </div>
         )}
       </CardContent>

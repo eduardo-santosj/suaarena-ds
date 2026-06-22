@@ -36,7 +36,7 @@ export const SemInscritos: Story = {
   args: {
     icon: Users,
     title: 'Nenhuma dupla inscrita',
-    description: 'As inscricoes ainda nao foram abertas ou nenhuma dupla se inscreveu.',
+    description: 'As inscrições ainda não foram abertas ou nenhuma dupla se inscreveu.',
   },
 };
 
@@ -53,7 +53,7 @@ export const ComAcao: Story = {
   name: 'Com acao (botao)',
   args: {
     icon: FileX,
-    title: 'Voce ainda nao tem torneios',
+    title: 'Você ainda não tem torneios',
     description: 'Crie seu primeiro campeonato e comece a gerenciar seus jogadores.',
     action: <Button>Criar torneio</Button>,
   },

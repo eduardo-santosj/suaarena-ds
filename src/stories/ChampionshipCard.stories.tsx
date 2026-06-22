@@ -26,7 +26,7 @@ export default meta;
 type Story = StoryObj<typeof ChampionshipCard>;
 
 export const InscricoesAbertas: Story = {
-  name: 'Inscricoes abertas',
+  name: 'Inscrições abertas',
   args: {
     showFavorite: true,
     championship: {

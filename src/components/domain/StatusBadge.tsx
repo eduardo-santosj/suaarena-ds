@@ -23,7 +23,7 @@ interface StatusConfig {
 }
 
 const TOURNAMENT_STATUS_MAP: Record<TournamentStatus, StatusConfig> = {
-  registration_open: { label: 'Inscricoes abertas', variant: 'secondary' },
+  registration_open: { label: 'Inscrições abertas', variant: 'secondary' },
   active:            { label: 'Em andamento',        variant: 'default'   },
   in_progress:       { label: 'Em andamento',        variant: 'default'   },
   finished:          { label: 'Finalizado',           variant: 'outline'   },

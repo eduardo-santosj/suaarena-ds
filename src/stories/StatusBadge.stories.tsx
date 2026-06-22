@@ -10,7 +10,7 @@ const meta: Meta<typeof StatusBadge> = {
     docs: {
       description: {
         component:
-          'Mapeia os status do sistema (torneio e inscricao) para Badge com variante e label corretos. ' +
+          'Mapeia os status do sistema (torneio e inscrição) para Badge com variante e label corretos. ' +
           'Zero configuracao: passe o status e o componente cuida do resto.',
       },
     },
@@ -43,7 +43,7 @@ export const TodosStatusTorneio: Story = {
         <StatusBadge status="finished" />
         <StatusBadge status="cancelled" />
       </div>
-      <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mt-2">Inscricao</p>
+      <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mt-2">Inscrição</p>
       <div className="flex flex-wrap gap-2">
         <StatusBadge status="confirmed" />
         <StatusBadge status="awaiting_payment" />

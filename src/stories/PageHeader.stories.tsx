@@ -31,7 +31,7 @@ export const Simples: Story = {
 };
 
 export const ComAcoes: Story = {
-  name: 'Com acoes',
+  name: 'Com ações',
   args: {
     title: 'Categorias',
     description: 'Configure as categorias do campeonato',
@@ -63,7 +63,7 @@ export const SemSeparador: Story = {
   name: 'Sem separador',
   args: {
     title: 'Painel do jogador',
-    description: 'Acompanhe suas inscricoes e resultados',
+    description: 'Acompanhe suas inscrições e resultados',
     withSeparator: false,
   },
 };
