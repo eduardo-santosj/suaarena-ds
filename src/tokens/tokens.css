@@ -85,6 +85,17 @@
   }
 }
 
+
+/* ── Base styles (obrigatorio para text-foreground e bg-background herdarem) ── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 /* ── Keyframes para o Alert customizado ──────────────────────────────────── */
 @keyframes alert-in {
   from { opacity: 0; transform: translateX(100%) scale(0.95); }
@@ -93,5 +104,4 @@
 
 @keyframes alert-out {
   from { opacity: 1; transform: translateX(0) scale(1); }
-  to   { opacity: 0; transform: translateX(100%) scale(0.95); }
-}
+  to   { opacity: 0; transform: translateX(100%) scale(0.95)
