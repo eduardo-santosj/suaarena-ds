@@ -1,110 +1,18 @@
-import type { Config } from 'tailwindcss';
-
-type Preset = Omit<Config, 'content'>;
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const animate = require('tailwindcss-animate');
-
 /**
- * @eduardo-santosj/ui -- Tailwind Preset
+ * @eduardo-santosj/ui -- Tailwind Preset (compatibilidade v4)
  *
- * Adicione ao tailwind.config.ts de qualquer projeto:
+ * EM TAILWIND V4 NAO E MAIS NECESSARIO ESTE PRESET.
+ * Os tokens de design vivem em tokens.css via @theme inline.
  *
- * ```ts
- * import dsPreset from '@eduardo-santosj/ui/tailwind-preset';
+ * Para consumir o DS em v4, no seu CSS de entrada:
+ *   @import "@eduardo-santosj/ui/tokens.css";
  *
- * export default {
- *   presets: [dsPreset],
- *   content: [...seu conteudo..., './node_modules/@eduardo-santosj/ui/dist/**'],
- * };
- * ```
+ * Se ainda precisar de um JS config (ex: IntelliSense), use:
+ *   // tailwind.config.ts
+ *   export default { content: [...] }
+ *
+ * Este arquivo e mantido apenas para nao quebrar imports existentes.
  */
-const preset: Preset = {
-  darkMode: ['class'],
-  theme: {
-    extend: {
-      colors: {
-        border:     'hsl(var(--border))',
-        input:      'hsl(var(--input))',
-        ring:       'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT:    'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT:    'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT:    'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT:    'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT:    'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT:    'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT:    'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        brand: {
-          orange: '#FF7E29',
-          cyan:   '#29E7FF',
-          dark:   '#1A1D21',
-          light:  '#F5F7FA',
-        },
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to:   { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to:   { height: '0' },
-        },
-        'fade-in': {
-          from: { opacity: '0', transform: 'translateY(-4px)' },
-          to:   { opacity: '1', transform: 'translateY(0)' },
-        },
-        wiggle: {
-          '0%, 100%': { transform: 'rotate(0deg)' },
-          '25%':      { transform: 'rotate(10deg)' },
-          '75%':      { transform: 'rotate(-10deg)' },
-        },
-        'point-left': {
-          '0%, 100%': { transform: 'translateX(0)', opacity: '1' },
-          '50%':      { transform: 'translateX(-6px)', opacity: '0.4' },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up':   'accordion-up 0.2s ease-out',
-        'fade-in':        'fade-in 0.15s ease-out',
-        wiggle:           'wiggle 0.5s ease-in-out',
-        'point-left':     'point-left 1s ease-in-out infinite',
-      },
-    },
-  },
-  plugins: [animate],
-};
+const preset = {};
 
 export default preset;
