@@ -7,10 +7,6 @@
  * Para consumir o DS em v4, no seu CSS de entrada:
  *   @import "@eduardo-santosj/ui/tokens.css";
  *
- * Se ainda precisar de um JS config (ex: IntelliSense), use:
- *   // tailwind.config.ts
- *   export default { content: [...] }
- *
  * Este arquivo e mantido apenas para nao quebrar imports existentes.
  */
 const preset = {};
