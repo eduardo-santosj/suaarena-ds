@@ -156,11 +156,11 @@ export const Showcase: Story = {
             {filtered.map(({ name, icon: Icon }) => (
               <button
                 key={name}
-                className="flex flex-col items-center gap-2 p-3 rounded-lg border hover:border-brand-primary hover:bg-accent transition-colors group"
+                className="flex flex-col items-center gap-2 p-3 rounded-lg border hover:border-primary hover:bg-accent transition-colors group"
                 onClick={() => navigator.clipboard.writeText(name)}
                 title={`Copiar: ${name}`}
               >
-                <Icon className="h-5 w-5 text-foreground group-hover:text-brand-primary transition-colors" />
+                <Icon className="h-5 w-5 text-foreground group-hover:text-primary transition-colors" />
                 <span className="text-[10px] text-muted-foreground text-center leading-tight break-all">
                   {name}
                 </span>
@@ -182,7 +182,7 @@ export const Sizes: Story = {
       <div className="flex items-end gap-8 flex-wrap">
         {[12, 16, 20, 24, 32, 40, 48].map((size) => (
           <div key={size} className="flex flex-col items-center gap-2">
-            <Trophy style={{ width: size, height: size }} className="text-brand-primary" />
+            <Trophy style={{ width: size, height: size }} className="text-primary" />
             <span className="text-xs text-muted-foreground">{size}px</span>
           </div>
         ))}
@@ -198,11 +198,11 @@ export const Colors: Story = {
       <h2 className="text-xl font-semibold">Ícones com cores do Design System</h2>
       <div className="flex gap-6 flex-wrap items-center">
         <div className="flex flex-col items-center gap-2">
-          <Trophy className="h-8 w-8 text-brand-primary" />
+          <Trophy className="h-8 w-8 text-primary" />
           <Badge>brand-primary</Badge>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <Trophy className="h-8 w-8 text-brand-secondary" />
+          <Trophy className="h-8 w-8 text-secondary" />
           <Badge variant="secondary">brand-secondary</Badge>
         </div>
         <div className="flex flex-col items-center gap-2">
@@ -251,7 +251,7 @@ export const TournamentIcons: Story = {
           { icon: BarChart2, label: 'Ranking' },
         ].map(({ icon: Icon, label }) => (
           <div key={label} className="flex flex-col items-center gap-2 p-4 rounded-lg border">
-            <Icon className="h-8 w-8 text-brand-primary" />
+            <Icon className="h-8 w-8 text-primary" />
             <span className="text-xs font-medium">{label}</span>
           </div>
         ))}

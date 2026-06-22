@@ -25,7 +25,7 @@ export const Default: Story = {
     <ScrollArea className="h-72 w-64 rounded-md border">
       <div className="p-4">
         <h4 className="mb-4 text-sm font-medium leading-none flex items-center gap-2">
-          <Trophy className="h-4 w-4 text-brand-primary" />
+          <Trophy className="h-4 w-4 text-primary" />
           Duplas inscritas
         </h4>
         {teams.map((team) => (
@@ -49,7 +49,7 @@ export const Horizontal: Story = {
             key={i}
             className="w-36 shrink-0 rounded-md border p-3 text-sm"
           >
-            <p className="font-medium text-brand-primary">Rodada {i + 1}</p>
+            <p className="font-medium text-primary">Rodada {i + 1}</p>
             <p className="text-muted-foreground text-xs mt-1">8 partidas</p>
           </div>
         ))}

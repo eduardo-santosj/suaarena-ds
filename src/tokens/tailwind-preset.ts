@@ -5,16 +5,16 @@ type Preset = Omit<Config, 'content'>;
 const animate = require('tailwindcss-animate');
 
 /**
- * @sua-arena/ui — Tailwind Preset
+ * @eduardo-santosj/ui -- Tailwind Preset
  *
  * Adicione ao tailwind.config.ts de qualquer projeto:
  *
  * ```ts
- * import suaArenaPreset from '@sua-arena/ui/tailwind-preset';
+ * import dsPreset from '@eduardo-santosj/ui/tailwind-preset';
  *
  * export default {
- *   presets: [suaArenaPreset],
- *   content: [...seu conteúdo..., './node_modules/@sua-arena/ui/dist/**'],
+ *   presets: [dsPreset],
+ *   content: [...seu conteudo..., './node_modules/@eduardo-santosj/ui/dist/**'],
  * };
  * ```
  */
@@ -56,12 +56,11 @@ const preset: Preset = {
           DEFAULT:    'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // ── Aliases diretos para a paleta de marca ──
         brand: {
-          orange: '#FF7E29',  // Laranja Solar
-          cyan:   '#29E7FF',  // Ciano Areia
-          dark:   '#1A1D21',  // Fundo escuro
-          light:  '#F5F7FA',  // Branco Gelo
+          orange: '#FF7E29',
+          cyan:   '#29E7FF',
+          dark:   '#1A1D21',
+          light:  '#F5F7FA',
         },
       },
       borderRadius: {

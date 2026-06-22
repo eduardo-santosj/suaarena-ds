@@ -1,6 +1,30 @@
 // ── Utilitários ──────────────────────────────────────────────────────────────
 export { cn } from './lib/utils';
 
+// ════════════════════════════════════════════════════════════════════════════
+// COMPONENTES DE DOMÍNIO (torneio + suaArena)
+// ════════════════════════════════════════════════════════════════════════════
+export {
+  ChampionshipCard,
+  StatusBadge,
+  EmptyState,
+  AvatarGroup,
+  PageHeader,
+} from './components/domain';
+export type {
+  ChampionshipCardProps,
+  ChampionshipCardData,
+  TournamentFormat,
+  StatusBadgeProps,
+  StatusBadgeVariant,
+  TournamentStatus,
+  RegistrationStatus,
+  EmptyStateProps,
+  AvatarGroupProps,
+  AvatarGroupUser,
+  PageHeaderProps,
+} from './components/domain';
+
 // ── Ícones (lucide-react re-export) ──────────────────────────────────────────
 export * from 'lucide-react';
 

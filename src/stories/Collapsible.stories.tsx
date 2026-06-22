@@ -20,7 +20,7 @@ export const Default: Story = {
     <Collapsible className="w-72 space-y-2">
       <div className="flex items-center justify-between space-x-4 px-4">
         <h4 className="text-sm font-semibold flex items-center gap-2">
-          <Trophy className="h-4 w-4 text-brand-primary" />
+          <Trophy className="h-4 w-4 text-primary" />
           Torneio Verão 2025 — Grupo A
         </h4>
         <CollapsibleTrigger asChild>

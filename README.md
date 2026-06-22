@@ -1,212 +1,179 @@
-# @sua-arena/ui
+# @eduardo-santosj/ui
 
-Design System compartilhado entre **SuaArena** (gestão de arenas) e **Torneio** (plataforma de campeonatos).
+Design System compartilhado dos produtos **SuaArena** e **Torneio**. Baseado em shadcn/ui (New York), Radix UI, Tailwind CSS e tokens de marca proprios.
 
-- Tokens de design extraídos do projeto Torneio (cores, radius, animações)
-- Componentes shadcn/ui + Radix UI com Tailwind
-- Storybook 8 para documentação visual
-- TypeScript estrito
-- Publicado via GitHub Packages
+**Storybook:** https://eduardo-santosj.github.io/suaarena-ds
 
 ---
 
-## Instalação
+## Instalacao
 
-### 1. Configure o registro do GitHub Packages
-
-Crie ou edite `~/.npmrc` (global) ou `.npmrc` na raiz do projeto:
-
-```ini
-@sua-arena:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=SEU_GITHUB_PAT
-```
-
-> Gere o PAT em: GitHub → Settings → Developer settings → Personal access tokens
-> Permissões necessárias: `read:packages` (consumers) ou `write:packages` (publisher)
-
-### 2. Instale o pacote
+O pacote e publicado no GitHub Packages. Configure a autenticacao antes de instalar:
 
 ```bash
-npm install @sua-arena/ui
+# .npmrc (na raiz do projeto consumidor)
+@eduardo-santosj:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+```bash
+npm install @eduardo-santosj/ui
 ```
 
 ---
 
-## Configuração no projeto
+## Configuracao
 
-### Tailwind
+### 1. Tailwind preset
 
 ```ts
 // tailwind.config.ts
-import suaArenaPreset from '@sua-arena/ui/tailwind-preset';
+import dsPreset from '@eduardo-santosj/ui/tailwind-preset';
 
 export default {
-  presets: [suaArenaPreset],
+  presets: [dsPreset],
   content: [
     './src/**/*.{ts,tsx}',
-    // Inclui os componentes do DS para purge correto
-    './node_modules/@sua-arena/ui/dist/**/*.{js,mjs}',
+    './node_modules/@eduardo-santosj/ui/dist/**/*.{js,mjs}',
   ],
 };
 ```
 
-### CSS Global
+### 2. CSS tokens (uma vez, na raiz da app)
 
 ```ts
-// app/layout.tsx ou _app.tsx — importe uma vez na raiz
-import '@sua-arena/ui/tokens.css';
+// app/layout.tsx ou _app.tsx
+import '@eduardo-santosj/ui/tokens.css';
 ```
 
----
+> O `tokens.css` define as CSS variables (`--primary`, `--background`, etc.) e as keyframes de animacao.
 
-## Uso dos componentes
+### 3. Dark mode (opcional)
+
+O preset usa `darkMode: ['class']`. Para ativar o tema escuro, adicione a classe `dark` ao `<html>`:
 
 ```tsx
-import { Button, Badge, Card, CardHeader, CardTitle, Logo } from '@sua-arena/ui';
-
-export function MyComponent() {
-  return (
-    <Card>
-      <CardHeader>
-        <Logo variant="horizontal-dark" height={32} />
-        <CardTitle>Torneio Open Verão</CardTitle>
-      </CardHeader>
-      <div className="flex gap-2 p-6 pt-0">
-        <Button>Inscrever</Button>
-        <Badge variant="success">Vagas disponíveis</Badge>
-      </div>
-    </Card>
-  );
-}
+<html className="dark">
 ```
 
 ---
 
-## Componentes disponíveis
+## Uso
 
-| Componente | Descrição |
-|---|---|
-| `Button` | 6 variantes (default, secondary, outline, destructive, ghost, link), 4 tamanhos |
-| `Input` | Campo de texto com suporte a ícone, elemento direito e mensagem de erro |
-| `Badge` | Etiqueta inline — variantes extras: `success`, `warning` |
-| `Card` | Container com `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
-| `Dialog` | Modal acessível via Radix UI |
-| `Label` | Label acessível com Radix UI |
-| `Select` | Select acessível com Radix UI |
-| `Logo` | 6 variantes de logo SVG (icon-orange, icon-white, horizontal-dark, horizontal-white, vertical-dark, vertical-white) |
+### Componentes UI (shadcn/ui)
 
----
-
-## Tokens de design
-
-As cores são definidas como CSS variables e consumidas pelo Tailwind preset:
-
-| Token | Valor (HSL) | Hex |
-|---|---|---|
-| `--primary` | 25 100% 58% | #FF7E29 (Laranja Solar) |
-| `--secondary` | 190 100% 58% | #29E7FF (Ciano Areia) |
-| `--background` dark | 214 11% 12% | #1A1D21 |
-| `--background` light | 216 33% 97% | #F5F7FA |
-| `--radius` | 0.5rem | — |
-
----
-
-## Storybook
-
-```bash
-npm run storybook   # http://localhost:6006
+```tsx
+import { Button, Badge, Card, CardHeader, CardTitle, Input, Dialog } from '@eduardo-santosj/ui';
 ```
 
-O Storybook documenta todos os componentes com controles interativos e alternância dark/light.
+### Componentes de dominio
 
----
+```tsx
+import {
+  ChampionshipCard,
+  StatusBadge,
+  EmptyState,
+  AvatarGroup,
+  PageHeader,
+} from '@eduardo-santosj/ui';
 
-## Publicação
+// Card de torneio
+<ChampionshipCard
+  championship={{
+    id: '1',
+    name: 'Open Verao 2026',
+    format: 'double',
+    city: 'Sao Paulo',
+    state: 'SP',
+    eventDate: '15/07/2026',
+    status: 'active',
+    registrationOpen: true,
+  }}
+  showFavorite
+  onClick={() => router.push('/torneio/1')}
+/>
 
-```bash
-# Build
-npm run build
+// Status de torneio ou inscricao
+<StatusBadge status="registration_open" />
+<StatusBadge status="confirmed" />
+<StatusBadge status="awaiting_payment" />
 
-# Publish (requer .npmrc configurado com write:packages)
-npm publish
+// Estado vazio
+<EmptyState
+  icon={Trophy}
+  title="Nenhum torneio encontrado"
+  description="Crie seu primeiro campeonato para comecar."
+  action={<Button>Criar torneio</Button>}
+/>
+
+// Grupo de avatares
+<AvatarGroup
+  users={[{ name: 'Carlos Silva' }, { name: 'Ana Oliveira' }]}
+  size="md"
+/>
+
+// Header padrao de pagina
+<PageHeader
+  title="Meus torneios"
+  description="Gerencie todos os seus campeonatos"
+  actions={<Button>Novo torneio</Button>}
+/>
 ```
 
-Para publicar automaticamente via GitHub Actions, crie `.github/workflows/publish.yml`:
+### Logo
 
-```yaml
-name: Publish DS
+```tsx
+import { Logo } from '@eduardo-santosj/ui';
 
-on:
-  push:
-    tags:
-      - 'v*'
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: 'https://npm.pkg.github.com'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+<Logo variant="horizontal-dark" height={40} />
+// Variantes: horizontal-dark | horizontal-white | icon-orange | icon-white | vertical-dark | vertical-white
 ```
 
-### Workflow de versão
+### Icones
 
-```bash
-# 1. Atualiza versão
-npm version patch   # 0.1.0 → 0.1.1
-npm version minor   # 0.1.0 → 0.2.0
-npm version major   # 0.1.0 → 1.0.0
+O pacote re-exporta todos os icones do `lucide-react`:
 
-# 2. Git tag é criada automaticamente
-git push && git push --tags
+```tsx
+import { Trophy, Users, Calendar, MapPin } from '@eduardo-santosj/ui';
+```
 
-# 3. GitHub Actions publica automaticamente
+### Utilitarios
+
+```tsx
+import { cn } from '@eduardo-santosj/ui';
+// Equivalente a clsx + tailwind-merge
 ```
 
 ---
 
-## Desenvolvimento local com npm link
+## Tokens de marca
 
-Para iterar no DS sem publicar:
-
-```bash
-# No repo ds/
-npm run build:watch   # ou npm link
-
-# No projeto consumidor
-npm link @sua-arena/ui
-```
+| Token           | Valor       | Uso                          |
+|-----------------|-------------|------------------------------|
+| `--primary`     | `#FF7E29`   | Laranja Solar — acoes, foco  |
+| `--secondary`   | `#29E7FF`   | Ciano Areia — destaques      |
+| `--background`  | `#F5F7FA`   | Fundo light                  |
+| `--background`  | `#1A1D21`   | Fundo dark                   |
+| `brand.orange`  | `#FF7E29`   | Classe Tailwind: `bg-brand-orange` |
+| `brand.cyan`    | `#29E7FF`   | Classe Tailwind: `bg-brand-cyan` |
 
 ---
 
-## Estrutura do pacote
+## Status de torneio
 
-```
-ds/
-├── src/
-│   ├── tokens/
-│   │   ├── tokens.css          ← CSS variables (:root + .dark)
-│   │   └── tailwind-preset.ts  ← Preset exportado
-│   ├── lib/
-│   │   └── utils.ts            ← cn() helper
-│   ├── components/
-│   │   ├── ui/                 ← Button, Input, Badge, Card, Dialog, Label, Select
-│   │   └── brand/              ← Logo
-│   ├── stories/                ← Storybook stories
-│   └── index.ts                ← Barrel export
-├── .storybook/
-├── package.json
-├── tsup.config.ts
-└── tailwind.config.ts
-```
+| Status              | Label                  | Componente            |
+|---------------------|------------------------|-----------------------|
+| `registration_open` | Inscricoes abertas     | Badge secondary       |
+| `active`            | Em andamento           | Badge default         |
+| `in_progress`       | Em andamento           | Badge default         |
+| `finished`          | Finalizado             | Badge outline         |
+| `cancelled`         | Cancelado              | Badge destructive     |
+| `confirmed`         | Confirmado             | Badge verde           |
+| `awaiting_payment`  | Aguardando pagamento   | Badge amarelo outline |
+| `pending`           | Pendente               | Badge outline         |
+
+---
+
+## Versoes
+
+Consulte o [CHANGELOG](./CHANGELOG.md) para historico de versoes.

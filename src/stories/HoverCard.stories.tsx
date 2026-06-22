@@ -23,7 +23,7 @@ export const Default: Story = {
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
           <Avatar>
-            <AvatarFallback className="bg-brand-primary text-white">EC</AvatarFallback>
+            <AvatarFallback className="bg-primary text-white">EC</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
             <h4 className="text-sm font-semibold">Eduardo / Carlos</h4>
