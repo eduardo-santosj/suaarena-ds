@@ -1,6 +1,2 @@
-/** @type {import('postcss').Config} */
-module.exports = {
-  plugins: {
-    '@tailwindcss/postcss': {},
-  },
-};
+/** PostCSS nao e necessario com @tailwindcss/vite. */
+module.exports = { plugins: {} };
