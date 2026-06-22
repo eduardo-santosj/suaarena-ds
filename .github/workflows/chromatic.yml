@@ -1,0 +1,39 @@
+name: Chromatic Visual Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  chromatic:
+    name: Run Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Fetch full history so Chromatic can diff against baseline
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          # Get your project token at chromatic.com
+          # Add it as CHROMATIC_PROJECT_TOKEN in GitHub repo Settings > Secrets
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Auto-accept changes on master (baselines), flag changes on PRs
+          autoAcceptChanges: "master"
+          # Fail the build on PR if there are unreviewed changes
+          exitZeroOnChanges: false
+          # Build Storybook before uploading
+          buildScriptName: build-storybook

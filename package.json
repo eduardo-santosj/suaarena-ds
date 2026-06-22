@@ -35,7 +35,11 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "release:patch": "npm version patch && git push && git push --tags",
+    "release:minor": "npm version minor && git push && git push --tags",
+    "release:major": "npm version major && git push && git push --tags"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -88,6 +92,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
+    "chromatic": "^17.5.0",
     "postcss": "^8.4.49",
     "storybook": "8.6.18",
     "tailwindcss": "^3.4.16",
