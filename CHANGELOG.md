@@ -6,6 +6,39 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.3.0] - 2026-06-22
+
+### Adicionado
+
+**Componentes de dominio extraidos do torneio (production-ready):**
+- `MatchCard` - card de partida completo: modo FTV (placar unico) + BT (sets), ao vivo, walkover, admin, comfortable/graphView. Desacoplado de Next.js e BracketSettingsContext via props diretas.
+- `MatchCardWithBadge` - wrapper com badge "Disputa de 1o e 2o lugar"
+- `FormField` - wrapper de campo de formulario com Label, hint e erro (compativel com react-hook-form FieldError)
+- `PasswordInput` - input de senha com show/hide e regras de validacao configuráveis (min 8 chars)
+- `ConfirmDialog` - dialog de confirmacao com variante destructive/default e estado de loading
+- `DatePicker` - seletor de data com locale ptBR via date-fns
+- `ExpandableDescription` - descricao HTML colapsavel com gradiente e "Leia mais"
+- `ChampionshipCardSkeleton` - skeleton do card de campeonato
+- `ChampionshipGridSkeleton` - grid de skeletons (count configuravel)
+- `TorneioPageSkeleton` - skeleton de pagina completa de torneio
+- `RankingSkeleton` - skeleton de pagina de ranking
+- `MatchListSkeleton` - skeleton de lista de partidas
+
+**Tipos compartilhados:**
+- `BracketMatch`, `Team`, `MatchSet`, `MatchStatus`, `BracketType` - exportados de `@eduardo-santosj/ui`
+
+**Stories (Storybook):**
+- `Design System/Introduction` - landing page vitrine do DS com paleta, componentes, instalacao
+- `Composed/TournamentListPage` - pagina completa interativa com tabs, busca, favoritos, loading, empty state
+- Stories individuais para FormField, PasswordInput, ConfirmDialog, DatePicker, ExpandableDescription, Skeletons, MatchCard
+
+**Fixes:**
+- `tokens.css`: alinhado com padrao shadcn (`outline-ring/50`, `font-sans antialiased`)
+- Dark mode texto branco corrigido via `body { @apply bg-background text-foreground }`
+- Nome do pacote corrigido em todos os comentarios
+
+---
+
 ## [0.2.0] - 2026-06-22
 
 ### Adicionado

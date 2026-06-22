@@ -1,15 +1,35 @@
-// ── Utilitários ──────────────────────────────────────────────────────────────
+// -- Utilitarios ----------------------------------------------------------------
 export { cn } from './lib/utils';
 
-// ════════════════════════════════════════════════════════════════════════════
-// COMPONENTES DE DOMÍNIO (torneio + suaArena)
-// ════════════════════════════════════════════════════════════════════════════
+// -- Tipos de Bracket ------------------------------------------------------------
+export type { BracketMatch, BracketType, MatchStatus, Team, MatchSet } from './types/bracket';
+
+// ==============================================================================
+// COMPONENTES DE DOMINIO (torneio + suaArena)
+// ==============================================================================
 export {
+  // existentes
   ChampionshipCard,
   StatusBadge,
   EmptyState,
   AvatarGroup,
   PageHeader,
+  // novos utilitarios
+  FormField,
+  PasswordInput,
+  isPasswordValid,
+  ConfirmDialog,
+  DatePicker,
+  ExpandableDescription,
+  // skeletons
+  ChampionshipCardSkeleton,
+  ChampionshipGridSkeleton,
+  TorneioPageSkeleton,
+  RankingSkeleton,
+  MatchListSkeleton,
+  // bracket
+  MatchCard,
+  MatchCardWithBadge,
 } from './components/domain';
 export type {
   ChampionshipCardProps,
@@ -23,19 +43,28 @@ export type {
   AvatarGroupProps,
   AvatarGroupUser,
   PageHeaderProps,
+  FormFieldProps,
+  FormFieldError,
+  PasswordInputProps,
+  PasswordRule,
+  ConfirmDialogProps,
+  DatePickerProps,
+  ExpandableDescriptionProps,
+  ChampionshipGridSkeletonProps,
+  MatchCardProps,
 } from './components/domain';
 
-// ── Ícones (lucide-react re-export) ──────────────────────────────────────────
+// -- Icones (lucide-react re-export) -------------------------------------------
 export * from 'lucide-react';
 
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 // COMPONENTES SHADCN / RADIX UI
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 
 // Accordion
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './components/ui/accordion';
 
-// Alert inline (shadcn) — bloco estático, NÃO é o toast customizado
+// Alert inline (shadcn) -- bloco estatico, NAO e o toast customizado
 export {
   AlertBlock,
   AlertBlockTitle,
@@ -180,11 +209,11 @@ export {
   NavigationMenuTrigger, NavigationMenuLink, NavigationMenuIndicator, NavigationMenuViewport,
 } from './components/ui/navigation-menu';
 
-// Toast (Radix) — primitivos para toasts com estado
+// Toast (Radix) - primitivos para toasts com estado
 export {
-  type ToastProps, type ToastActionElement,
   ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, ToastClose, ToastAction, toastVariants,
 } from './components/ui/toast';
+export type { ToastProps, ToastActionElement } from './components/ui/toast';
 export { Toaster } from './components/ui/toaster';
 export { useToast, toast } from './components/ui/use-toast';
 
@@ -192,17 +221,17 @@ export { useToast, toast } from './components/ui/use-toast';
 export { Calendar } from './components/ui/calendar';
 export type { CalendarProps } from './components/ui/calendar';
 
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 // COMPONENTES CUSTOMIZADOS (design original SuaArena/Torneio)
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 
-// Alert Toast — toast com auto-dismiss, posicionado no canto da tela
+// Alert Toast -- toast com auto-dismiss, posicionado no canto da tela
 export { Alert, AlertProvider, useAlert } from './components/custom';
 export type { AlertType, AlertProps } from './components/custom';
 
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 // MARCA
-// ════════════════════════════════════════════════════════════════════════════
+// ==============================================================================
 
 export { Logo } from './components/brand';
 export type { LogoProps } from './components/brand';
