@@ -12,7 +12,9 @@ const meta: Meta<typeof Logo> = {
     backgrounds: { disable: true },
     docs: {
       description: {
-        component: 'Logotipo SuaArena em 6 variantes. Variantes *-dark usam texto escuro (fundo claro). Variantes *-white usam texto branco (fundo escuro).',
+        component:
+          'Logotipo SuaArena em 6 variantes base + variantes de produto (Torneios / Ferinos).\n\n' +
+          'Passe `product="torneio"` ou `product="ferinos"` para exibir o wordmark empilhado do sub-produto.',
       },
     },
   },
@@ -20,6 +22,11 @@ const meta: Meta<typeof Logo> = {
     variant: {
       control: 'select',
       options: ['horizontal-dark', 'horizontal-white', 'icon-orange', 'icon-white', 'vertical-dark', 'vertical-white'],
+    },
+    product: {
+      control: 'select',
+      options: [undefined, 'torneio', 'ferinos'],
+      description: 'Sub-produto. Quando definido, exibe o logo de produto com wordmark empilhado.',
     },
     height: { control: { type: 'range', min: 24, max: 120, step: 4 } },
   },
@@ -39,6 +46,8 @@ const meta: Meta<typeof Logo> = {
 export default meta;
 type Story = StoryObj<typeof Logo>;
 
+/* ── Base variants ─────────────────────────────────────────────────────────── */
+
 export const HorizontalDark: Story = {
   name: 'Horizontal - texto escuro (fundo claro)',
   args: { variant: 'horizontal-dark', height: 40 },
@@ -50,12 +59,12 @@ export const HorizontalWhite: Story = {
 };
 
 export const IconOrange: Story = {
-  name: 'Icone laranja (fundo claro)',
+  name: 'Ícone laranja (fundo claro)',
   args: { variant: 'icon-orange', height: 64 },
 };
 
 export const IconWhite: Story = {
-  name: 'Icone branco (fundo escuro)',
+  name: 'Ícone branco (fundo escuro)',
   args: { variant: 'icon-white', height: 64 },
 };
 
@@ -69,8 +78,32 @@ export const VerticalWhite: Story = {
   args: { variant: 'vertical-white', height: 96 },
 };
 
+/* ── Product variants ──────────────────────────────────────────────────────── */
+
+export const TorneiosLight: Story = {
+  name: 'Torneios - fundo claro',
+  args: { variant: 'horizontal-dark', product: 'torneio', height: 56 },
+};
+
+export const TorneiosDark: Story = {
+  name: 'Torneios - fundo escuro',
+  args: { variant: 'horizontal-white', product: 'torneio', height: 56 },
+};
+
+export const FerinosLight: Story = {
+  name: 'Ferinos - fundo claro',
+  args: { variant: 'horizontal-dark', product: 'ferinos', height: 56 },
+};
+
+export const FerinosDark: Story = {
+  name: 'Ferinos - fundo escuro',
+  args: { variant: 'horizontal-white', product: 'ferinos', height: 56 },
+};
+
+/* ── Showcase grids ────────────────────────────────────────────────────────── */
+
 export const AllVariants: Story = {
-  name: 'Todas as variantes',
+  name: 'Todas as variantes base',
   parameters: { controls: { disable: true }, backgrounds: { disable: true } },
   decorators: [(Story) => <Story />],
   render: () => (
@@ -89,6 +122,24 @@ export const AllVariants: Story = {
   ),
 };
 
+export const AllProducts: Story = {
+  name: 'Variantes de produto',
+  parameters: { controls: { disable: true }, backgrounds: { disable: true } },
+  decorators: [(Story) => <Story />],
+  render: () => (
+    <div className="space-y-4">
+      <div style={{ backgroundColor: LIGHT_BG }} className="p-6 rounded-lg flex flex-wrap gap-12 items-center">
+        <Logo product="torneio" variant="horizontal-dark" height={52} />
+        <Logo product="ferinos" variant="horizontal-dark" height={52} />
+      </div>
+      <div style={{ backgroundColor: DARK_BG }} className="p-6 rounded-lg flex flex-wrap gap-12 items-center">
+        <Logo product="torneio" variant="horizontal-white" height={52} />
+        <Logo product="ferinos" variant="horizontal-white" height={52} />
+      </div>
+    </div>
+  ),
+};
+
 export const Sizes: Story = {
   name: 'Tamanhos',
   parameters: { controls: { disable: true }, backgrounds: { disable: true } },
@@ -99,6 +150,22 @@ export const Sizes: Story = {
         <div key={h} className="flex items-center gap-4">
           <span className="text-xs text-gray-400 w-8">{h}px</span>
           <Logo variant="horizontal-dark" height={h} />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const ProductSizes: Story = {
+  name: 'Tamanhos - Produto',
+  parameters: { controls: { disable: true }, backgrounds: { disable: true } },
+  decorators: [(Story) => <Story />],
+  render: () => (
+    <div className="space-y-3 p-6 rounded-lg" style={{ backgroundColor: LIGHT_BG }}>
+      {[32, 40, 52, 64, 80].map((h) => (
+        <div key={h} className="flex items-center gap-4">
+          <span className="text-xs text-gray-400 w-8">{h}px</span>
+          <Logo product="torneio" variant="horizontal-dark" height={h} />
         </div>
       ))}
     </div>

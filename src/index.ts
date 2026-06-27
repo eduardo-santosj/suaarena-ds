@@ -234,4 +234,4 @@ export type { AlertType, AlertProps } from './components/custom';
 // ==============================================================================
 
 export { Logo } from './components/brand';
-export type { LogoProps } from './components/brand';
+export type { LogoProps, LogoProduct } from './components/brand';
