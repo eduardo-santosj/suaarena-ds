@@ -3,3 +3,6 @@ dist/
 .storybook-out/
 *.tsbuildinfo
 .env
+
+# tarball local de npm pack
+*.tgz

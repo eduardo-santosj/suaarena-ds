@@ -6,6 +6,58 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.11.0] - 2026-09-03
+
+### Adicionado
+
+**Tokens de superficie (dark ganha profundidade):**
+- `--surface-1` (#171B20, card), `--surface-2` (#1F242A, sheet/popover), `--surface-3` (#272D34, press/hover), com utilitarios `bg-surface-1/2/3`.
+- `--card`, `--popover` e `--muted` passam a apontar para as superficies, entao todo `bg-card` existente ganha o novo valor sem mudar codigo.
+- Versao clara das tres superficies em `:root`.
+
+**Tokens de estado:**
+- `--success` / `--success-foreground` e `--warning` / `--warning-foreground`, com `bg-success`, `text-warning` etc. Antes cada app inventava o seu verde e o seu amarelo.
+- No dark, os valores sao os de sistema do iOS (`#30D158`, `#FFD60A`), calibrados para fundo escuro.
+
+**Tipografia:**
+- `--font-display` (Poppins, fonte do brand sheet) para titulo, placar e numero grande. Utilitario `font-display`.
+- `--font-sans` e `--font-mono` ganham as variaveis `--font-poppins` / `--font-jetbrains` na frente da cadeia; sem elas o fallback e o sistema.
+
+**Tokens como objeto JS (`@eduardo-santosj/ui/tokens`):**
+- `src/tokens/tokens.ts` exporta `brand`, `dark`, `light`, `radius`, `fonts`, `typeScale`, `spacing` e `tailwindColors`.
+- `tailwindColors` entra direto em `theme.extend.colors` do NativeWind. Fim da copia manual de hex no `tailwind.config.js` do React Native.
+- Entrada propria no tsup (sem `"use client"`, sem React).
+
+**Animacao:**
+- `animate-pulse-dot` (ponto pulsante do estado "ao vivo").
+
+### Alterado
+
+- **`.dark --background`: #1A1D21 -> #0F1215.** O grafite #1A1D21 continua como cor de marca (`brand-dark`), mas deixa de ser o fundo. Motivo: fundo e card estavam a ~1,15:1 de contraste e o app parecia plano.
+- **`.dark --destructive`: `0 62% 30%` -> `3 100% 61%` (#FF453A).** O valor antigo era um vermelho escuro que quase nao se separava do fundo, problema de acessibilidade em botao destrutivo.
+- `.dark --border`: `214 11% 20%` -> `213 12% 17%` (hairline mais discreta sobre o fundo novo).
+- `--radius`: `0.5rem` -> `0.625rem` (controle passa de 8 para 10px; card usa `rounded-2xl`, palco/sheet `rounded-3xl`).
+
+### Notas de migracao
+
+- Nenhum token foi removido ou renomeado. Consumidores compilam sem mudanca.
+- O fundo do dark e o raio mudam visualmente. Revise as telas principais ao subir a versao.
+- Para o `--font-display` aparecer, o app precisa carregar Poppins (ex.: `next/font/google` com `variable: '--font-poppins'`). Sem isso, cai em `--font-geist-sans` e depois no sistema.
+
+---
+
+## [0.4.0] a [0.10.0] - 2026-06-22 a 2026-06-27
+
+Versoes publicadas sem entrada aqui. Resumo pelo historico do git:
+
+- **0.10.0** Logo com os SVGs vetorizados do designer.
+- **0.7.0** `Logo` ganha `product="torneio" | "ferinos"` para as submarcas.
+- **0.6.0** Tabs v2 (orientacao vertical, variante line) e Calendar v2 (react-day-picker v9, range, `CalendarDayButton`).
+- **0.5.0** Migracao para Tailwind v4: CSS-first, `@theme inline`, `@tailwindcss/vite`; remove postcss config.
+- **0.4.x** Chromatic, scripts `release:patch/minor/major`, correcoes de Storybook e de bloco nao fechado em `tokens.css`.
+
+---
+
 ## [0.3.0] - 2026-06-22
 
 ### Adicionado
