@@ -6,6 +6,14 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.11.1] - 2026-10-14
+
+### Corrigido
+
+- **`TabsTrigger`: aspas simples escapadas na classe.** `[&_svg:not([class*=\'size-\'])]:size-4` virou `[&_svg:not([class*='size-'])]:size-4`. O Tailwind v4 dos consumidores varre o dist como texto e as barras invertidas viravam seletor CSS invalido (`Parsing css source code failed`), quebrando o build do app consumidor. Sem mudanca de API.
+
+---
+
 ## [0.11.0] - 2026-09-03
 
 ### Adicionado
@@ -50,7 +58,7 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Versoes publicadas sem entrada aqui. Resumo pelo historico do git:
 
-- **0.10.0** Logo com os SVGs vetorizados do designer.
+- **0.10.0** Logo com os SVGs vetorizados do designer. **BREAKING:** as variantes do `Logo` passaram a nomear a cor do FUNDO: `horizontal-white` foi removida; `horizontal-dark` agora e para fundo escuro; nova `horizontal-light` para fundo claro.
 - **0.7.0** `Logo` ganha `product="torneio" | "ferinos"` para as submarcas.
 - **0.6.0** Tabs v2 (orientacao vertical, variante line) e Calendar v2 (react-day-picker v9, range, `CalendarDayButton`).
 - **0.5.0** Migracao para Tailwind v4: CSS-first, `@theme inline`, `@tailwindcss/vite`; remove postcss config.
