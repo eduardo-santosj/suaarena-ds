@@ -289,6 +289,16 @@ export type {
   SavedIndicatorProps, SavedStatus, StepChecklistProps, ChecklistStep, SportPickerProps, SportOption,
   QrBlockProps, AuthShellProps, SocialButtonProps, TvShellProps, TvPanelProps, TvRowProps, TvScoreProps, TvScoreSide,
 } from './components/custom';
+
+// Passkey, offline e estados (0.16.0)
+export {
+  OfflineBanner, StaleTag, QueueItem, agoLabel, PasskeySheet, SessionExpiredSheet,
+  DelayedSkeleton, StageSkeleton, DateRowSkeleton, ListRowSkeleton, ScreenSkeleton,
+} from './components/custom';
+export type {
+  OfflineBannerProps, StaleTagProps, QueueItemProps, QueueStatus, PasskeySheetProps, SessionExpiredSheetProps,
+  DelayedSkeletonProps, ScreenSkeletonProps,
+} from './components/custom';
 export type {
   PillTabOption, PillTabsProps, DateRowProps, GroupedListProps, RowProps, StepperProps, SkeletonBlockProps,
 } from './components/custom';

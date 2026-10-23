@@ -6,6 +6,20 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.16.0] - 2026-10-23
+
+Pecas de passkey, offline e estados (ondas 5 e 8, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente muda.
+
+### Adicionado
+
+- `PasskeySheet` (custom): folha da passkey sobre o `Sheet`. `mode` `create` (oferece criar depois do 1o login, "Agora nao") ou `signin` (entrar com ela). Props: `open`, `onOpenChange`, `mode`, `methodLabel` ("Face ID", "digital", "Windows Hello"), `name`, `title`, `description`, `loading`, `onConfirm`, `onDismiss`, `icon`.
+- `SessionExpiredSheet` (custom): sessao vencida (T4), folha por cima da tela atual. Com `passkeyLabel` e `onPasskey` mostra o botao da passkey; sem eles pede a senha com o e-mail ja preenchido. Props: `open`, `onOpenChange`, `name`, `email`, `passkeyLabel`, `onPasskey`, `onPassword`, `onOtherAccount`, `loading`, `error`.
+- `OfflineBanner` (custom): faixa ambar (tokens `offline`) de "sem conexao". Props: `message`, `actionLabel`, `onAction`, `className`.
+- `StaleTag` e `agoLabel` (custom): etiqueta cinza "ha N min" no lugar do "ao vivo" (usa o `stale` do `LiveTag`). Props: `minutes`, `className`.
+- `QueueItem` (custom): acao guardada no celular esperando a rede (gol offline). Props: `title`, `description`, `status` (`queued`, `sending`, `failed`), `onRetry`, `className`.
+- `ScreenSkeleton`, `DelayedSkeleton`, `StageSkeleton`, `DateRowSkeleton`, `ListRowSkeleton` (custom): esqueletos com a forma real da tela (T1), baseados no `SkeletonBlock`. `DelayedSkeleton` so mostra depois de `delay` ms (300 por padrao). `ScreenSkeleton`: `variant` (`events`, `list`), `rows`, `delay`, `className`.
+- Stories claro e escuro de todas as pecas.
+
 ## [0.15.0] - 2026-10-23
 
 Pecas de configuracao, entrada e telao (ondas 4 e 7, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente muda.
