@@ -4,7 +4,7 @@ import React from 'react';
 import '../src/tokens/tokens.css';
 
 const LIGHT_BG = 'hsl(216, 33%, 97%)'; // #F5F7FA
-const DARK_BG  = 'hsl(214, 11%, 12%)'; // #1A1D21
+const DARK_BG  = 'hsl(214, 11%, 12%)'; // #1B1E22
 
 const preview: Preview = {
   parameters: {

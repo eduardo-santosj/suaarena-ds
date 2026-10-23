@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { dark, light } from '../tokens/tokens';
 
 const meta: Meta = {
   title: 'Design Tokens/Cores',
@@ -17,29 +18,37 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-const SEMANTIC_TOKENS = [
-  { name: 'primary',     label: 'Primary',     hex: '#FF7E29', desc: 'Laranja Solar — ações principais, foco, destaque' },
-  { name: 'secondary',   label: 'Secondary',   hex: '#29E7FF', desc: 'Ciano Areia — ações secundárias, acentos' },
-  { name: 'background',  label: 'Background',  hex: '#1A1D21', desc: 'Fundo escuro da aplicação' },
-  { name: 'card',        label: 'Card',        hex: '#1E2126', desc: 'Superfície de cartões' },
-  { name: 'muted',       label: 'Muted',       hex: '#2A2D33', desc: 'Superfícies discretas, inputs desabilitados' },
-  { name: 'destructive', label: 'Destructive', hex: '#4d1a1a', desc: 'Erros e ações destrutivas' },
-  { name: 'border',      label: 'Border',      hex: '#2A2D33', desc: 'Bordas e separadores' },
-  { name: 'ring',        label: 'Ring',        hex: '#FF7E29', desc: 'Foco de acessibilidade (= primary)' },
+// 0.12.0: valores lidos de tokens.ts, os dois temas lado a lado.
+const SEMANTIC_TOKENS: Array<{ name: string; key: keyof typeof dark; desc: string }> = [
+  { name: 'background',        key: 'background',       desc: 'Fundo da tela' },
+  { name: 'surface-1',         key: 'surface1',         desc: 'Card' },
+  { name: 'surface-2',         key: 'surface2',         desc: 'Sheet, popover, dialogo' },
+  { name: 'surface-3',         key: 'surface3',         desc: 'Press, hover, toast, botao secundario' },
+  { name: 'stage',             key: 'stage',            desc: 'Palco: o evento ao vivo' },
+  { name: 'chrome',            key: 'chrome',           desc: 'Tab bar, action bar, sidebar' },
+  { name: 'foreground',        key: 'foreground',       desc: 'Texto' },
+  { name: 'muted-foreground',  key: 'mutedForeground',  desc: 'Texto 2' },
+  { name: 'subtle-foreground', key: 'subtleForeground', desc: 'Texto 3, rotulo mono' },
+  { name: 'primary',           key: 'primary',          desc: 'Laranja: acao e destaque' },
+  { name: 'you',               key: 'you',              desc: 'Ciano: voce e votacao' },
+  { name: 'star',              key: 'star',             desc: 'Amarelo: estrela e resultado' },
+  { name: 'destructive',       key: 'destructive',      desc: 'Destrutivo, erro, dinheiro em aberto' },
+  { name: 'success',           key: 'success',          desc: 'Confirmado, fim de jogo' },
+  { name: 'offline',           key: 'offline',          desc: 'Faixa de sem conexao' },
+  { name: 'border',            key: 'border',           desc: 'Borda (hairline = border/60)' },
 ];
 
-function Swatch({ name, label, hex, desc }: { name: string; label: string; hex: string; desc: string }) {
+function Swatch({ name, desc, hexLight, hexDark }: { name: string; desc: string; hexLight: string; hexDark: string }) {
   return (
-    <div className="flex items-start gap-4">
-      <div
-        className={`w-14 h-14 rounded-lg border border-border bg-${name} flex-shrink-0`}
-        style={{ background: `hsl(var(--${name}))` }}
-      />
+    <div className="flex items-center gap-4">
+      <div className="flex gap-1.5 flex-shrink-0">
+        <div className="light w-12 h-12 rounded-lg border border-border" style={{ background: `hsl(var(--${name}))` }} />
+        <div className="dark w-12 h-12 rounded-lg border border-border" style={{ background: `hsl(var(--${name}))` }} />
+      </div>
       <div>
-        <p className="font-medium text-sm text-foreground">{label}</p>
-        <p className="text-xs text-muted-foreground font-mono">--{name}</p>
-        <p className="text-xs text-muted-foreground font-mono">{hex}</p>
-        <p className="text-xs text-muted-foreground mt-1">{desc}</p>
+        <p className="font-mono text-xs text-foreground">--{name}</p>
+        <p className="text-xs text-muted-foreground font-mono">{hexLight} · {hexDark}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
       </div>
     </div>
   );
@@ -48,9 +57,9 @@ function Swatch({ name, label, hex, desc }: { name: string; label: string; hex: 
 export const SemanticTokens: Story = {
   name: 'Tokens semânticos',
   render: () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 p-4">
       {SEMANTIC_TOKENS.map((t) => (
-        <Swatch key={t.name} {...t} />
+        <Swatch key={t.name} name={t.name} desc={t.desc} hexLight={light[t.key]} hexDark={dark[t.key]} />
       ))}
     </div>
   ),

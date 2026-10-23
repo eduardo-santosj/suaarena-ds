@@ -4,17 +4,23 @@
  *
  * Paleta base:
  *   Laranja Solar:  #FF7E29  -> hsl(25 100% 58%)
- *   Ciano Areia:    #29E7FF  -> hsl(190 100% 58%)
+ *   Ciano Areia:    #29E7FF  -> hsl(187 100% 58%)
  *   Branco Gelo:    #F5F7FA  -> hsl(216 33% 97%)
- *   Grafite:        #1A1D21  -> hsl(214 11% 12%)   (cor de marca; nao e mais o fundo do dark)
+ *   Grafite:        #1A1D21  -> hsl(214 11% 12%)
  *
- * Superficies (0.11.0):
- *   O dark ganhou tres niveis de superficie para dar profundidade:
- *     --surface-1  card        #171B20
- *     --surface-2  sheet/popup #1F242A
- *     --surface-3  press/hover #272D34
- *   e o fundo desceu para #0F1215. Os tokens antigos (--card, --popover, --muted)
- *   continuam existindo e passam a apontar para essas superficies.
+ * Superficies (0.12.0, tons dos desenhos 08 a 11 do redesign):
+ *     --background  fundo        escuro #1B1E22  claro #F5F7FA
+ *     --surface-1   card         #23262C         #FFFFFF
+ *     --surface-2   sheet/popup  #2A2E35         #EEF2F6
+ *     --surface-3   press/toast  #343941         #E9EDF2
+ *     --stage       palco        #262A31         #FFFFFF
+ *     --chrome      barras       #16181C         #FFFFFF
+ *   --card, --popover e --muted continuam apontando para as superficies.
+ *
+ * Cores com significado (0.12.0):
+ *   laranja (primary) = acao e destaque; ciano (you) = voce e votacao;
+ *   vermelho (destructive) = destrutivo e dinheiro em aberto;
+ *   amarelo (star) = estrelas e resultado.
  *
  * Os mesmos valores existem como objeto JS em `@eduardo-santosj/ui/tokens`
  * (src/tokens/tokens.ts) para consumo fora do DOM, ex.: tailwind.config do
@@ -75,6 +81,15 @@
   --color-surface-2: hsl(var(--surface-2));
   --color-surface-3: hsl(var(--surface-3));
 
+  /* 0.12.0: palco, cromo e cores com significado */
+  --color-stage:  hsl(var(--stage));
+  --color-chrome: hsl(var(--chrome));
+  --color-you:    hsl(var(--you));
+  --color-star:   hsl(var(--star));
+  --color-subtle-foreground:  hsl(var(--subtle-foreground));
+  --color-offline:            hsl(var(--offline));
+  --color-offline-foreground: hsl(var(--offline-foreground));
+
   /* Cores de marca (diretas, sem CSS var intermediaria) */
   --color-brand-orange: #FF7E29;
   --color-brand-cyan:   #29E7FF;
@@ -106,50 +121,67 @@
   --animate-alert-in:       alert-in 0.2s ease-out;
   --animate-alert-out:      alert-out 0.2s ease-out;
   --animate-pulse-dot:      pulse-dot 1.6s ease-in-out infinite;
+  --animate-toast-in:       toast-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
 }
 
 /* -- CSS custom properties (modo claro) ------------------------------------ */
-:root {
+/* `.light` permite forcar o claro dentro de um bloco escuro (ex.: miniatura
+ * do ThemeSwitcher). `.dark` faz o inverso. Valores do tema claro do arquivo 08
+ * do redesign (bloco .lt). */
+:root, .light {
   /* Superficies */
-  --background:    216 33% 97%;   /* #F5F7FA - Branco Gelo        */
-  --foreground:    0 0% 20%;      /* #333333 - Texto escuro        */
+  --background:    216 33% 97%;   /* #F5F7FA - fundo               */
+  --foreground:    213 15% 14%;   /* #1F242A - texto               */
 
   --surface-1:     0 0% 100%;     /* #FFFFFF - card                */
-  --surface-2:     210 40% 98%;   /* #F8FAFC - sheet, popover      */
-  --surface-3:     214 24% 95%;   /* #EEF2F6 - press, hover        */
+  --surface-2:     210 31% 95%;   /* #EEF2F6 - sheet, popover      */
+  --surface-3:     213 26% 93%;   /* #E9EDF2 - press, hover        */
+
+  /* Palco (bloco do evento ao vivo) e cromo (tab bar, action bar, sidebar) */
+  --stage:         0 0% 100%;     /* #FFFFFF                       */
+  --chrome:        0 0% 100%;     /* #FFFFFF                       */
 
   --card:          var(--surface-1);
-  --card-foreground: 0 0% 20%;
+  --card-foreground: var(--foreground);
 
   --popover:       var(--surface-2);
-  --popover-foreground: 0 0% 20%;
+  --popover-foreground: var(--foreground);
 
   /* Marca */
   --primary:       25 100% 58%;   /* #FF7E29 - Laranja Solar       */
-  --primary-foreground: 0 0% 100%;
+  --primary-foreground: 30 28% 7%; /* #17120D - tinta sobre laranja */
 
-  --secondary:     190 100% 58%;  /* #29E7FF - Ciano Areia         */
-  --secondary-foreground: 0 0% 10%;
+  --secondary:     187 100% 58%;  /* #29E7FF - Ciano Areia         */
+  --secondary-foreground: 30 28% 7%;
+
+  /* Significado */
+  --you:           188 88% 34%;   /* #0A8FA3 - ciano "voce" (escurece no claro) */
+  --star:          50 100% 52%;   /* #FFD60A - estrela e resultado */
 
   /* Suporte */
-  --muted:         216 20% 93%;
-  --muted-foreground: 0 0% 40%;
+  --muted:         var(--surface-3);
+  --muted-foreground: 213 9% 40%;  /* #5C646E - texto 2            */
+  --subtle-foreground: 210 8% 58%; /* #8A939C - texto 3, rotulo    */
 
-  --accent:        190 100% 58%;  /* #29E7FF - Ciano Areia         */
-  --accent-foreground: 0 0% 10%;
+  --accent:        187 100% 58%;  /* #29E7FF - Ciano Areia         */
+  --accent-foreground: 30 28% 7%;
 
-  --destructive:   0 84% 60%;     /* #EF4444 - Vermelho erro       */
+  --destructive:   3 78% 53%;     /* #E5352B - erro, dinheiro em aberto */
   --destructive-foreground: 0 0% 100%;
 
-  --success:       135 59% 49%;   /* #34C759 - verde do iOS (claro)*/
+  --success:       138 68% 37%;   /* #1E9E45                       */
   --success-foreground: 0 0% 100%;
 
-  --warning:       48 100% 50%;   /* #FFCC00 - amarelo do iOS      */
-  --warning-foreground: 0 0% 10%;
+  --warning:       48 100% 50%;   /* #FFCC00                       */
+  --warning-foreground: 30 28% 7%;
 
-  /* Borda / Input / Foco */
-  --border:        216 20% 88%;
-  --input:         216 20% 88%;
+  /* Faixa de sem conexao (igual nos dois temas) */
+  --offline:       37 36% 17%;    /* #3A2E1B                       */
+  --offline-foreground: 38 100% 77%; /* #FFD58A                    */
+
+  /* Borda / Input / Foco. Hairline entre linhas = border/60 */
+  --border:        214 25% 89%;   /* #DCE2EA                       */
+  --input:         214 25% 89%;
   --ring:          25 100% 58%;   /* Foco laranja                  */
 
   /* Radius base: 10px. Controle = lg (10), card = 2xl (16), palco = 3xl (24) */
@@ -157,45 +189,54 @@
 }
 
 /* -- CSS custom properties (modo escuro) ----------------------------------- */
+/* Tons dos arquivos 08 a 11 do redesign: no escuro quem separa e o tom. */
 .dark {
-  --background:    210 17% 7%;    /* #0F1215 - fundo (era #1A1D21) */
-  --foreground:    216 33% 97%;   /* #F5F7FA - Branco Gelo         */
+  --background:    214 11% 12%;   /* #1B1E22 - fundo               */
+  --foreground:    210 18% 96%;   /* #F2F4F6 - texto               */
 
-  --surface-1:     213 16% 11%;   /* #171B20 - card                */
-  --surface-2:     213 15% 14%;   /* #1F242A - sheet, popover      */
-  --surface-3:     212 14% 18%;   /* #272D34 - press, hover        */
+  --surface-1:     220 11% 15%;   /* #23262C - card                */
+  --surface-2:     218 12% 19%;   /* #2A2E35 - sheet, popover      */
+  --surface-3:     217 11% 23%;   /* #343941 - press, hover, toast */
+
+  --stage:         218 13% 17%;   /* #262A31 - palco               */
+  --chrome:        220 12% 10%;   /* #16181C - tab bar, action bar, sidebar */
 
   --card:          var(--surface-1);
-  --card-foreground: 216 33% 97%;
+  --card-foreground: var(--foreground);
 
   --popover:       var(--surface-2);
-  --popover-foreground: 216 33% 97%;
+  --popover-foreground: var(--foreground);
 
   --primary:       25 100% 58%;   /* #FF7E29 - Laranja Solar       */
-  --primary-foreground: 0 0% 100%;
+  --primary-foreground: 30 28% 7%; /* #17120D                      */
 
-  --secondary:     190 100% 58%;  /* #29E7FF - Ciano Areia         */
-  --secondary-foreground: 0 0% 10%;
+  --secondary:     187 100% 58%;  /* #29E7FF - Ciano Areia         */
+  --secondary-foreground: 30 28% 7%;
+
+  --you:           187 100% 58%;  /* #29E7FF                       */
+  --star:          50 100% 52%;   /* #FFD60A                       */
 
   --muted:         var(--surface-3);
-  --muted-foreground: 213 13% 60%; /* #8C98A6                      */
+  --muted-foreground: 212 10% 67%; /* #A3ABB4 - texto 2            */
+  --subtle-foreground: 212 8% 48%; /* #727B85 - texto 3, rotulo    */
 
-  --accent:        190 100% 58%;  /* #29E7FF - Ciano Areia         */
-  --accent-foreground: 0 0% 10%;
+  --accent:        187 100% 58%;
+  --accent-foreground: 30 28% 7%;
 
-  /* Estado recalibrado para fundo escuro (valores de sistema do iOS).
-   * O destructive antigo (0 62% 30%) quase nao se separava do fundo. */
-  --destructive:   3 100% 61%;    /* #FF453A                       */
+  --destructive:   4 100% 65%;    /* #FF5A4E                       */
   --destructive-foreground: 0 0% 100%;
 
   --success:       135 64% 50%;   /* #30D158                       */
-  --success-foreground: 140 70% 8%;
+  --success-foreground: 137 75% 9%;
 
   --warning:       50 100% 52%;   /* #FFD60A                       */
-  --warning-foreground: 0 0% 10%;
+  --warning-foreground: 30 28% 7%;
 
-  --border:        213 12% 17%;   /* #262B31 - hairline            */
-  --input:         213 12% 17%;
+  --offline:       37 36% 17%;
+  --offline-foreground: 38 100% 77%;
+
+  --border:        214 6% 23%;    /* #36393D - branco 12% sobre o fundo */
+  --input:         214 6% 23%;
   --ring:          25 100% 58%;
 }
 
@@ -238,6 +279,11 @@
 @keyframes alert-out {
   from { opacity: 1; transform: translateX(0) scale(1); }
   to   { opacity: 0; transform: translateX(100%) scale(0.95); }
+}
+/* Toast entrando de cima */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 /* Ponto pulsante do estado "ao vivo" */
 @keyframes pulse-dot {

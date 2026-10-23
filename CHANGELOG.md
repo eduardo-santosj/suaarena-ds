@@ -6,6 +6,56 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.12.0] - 2026-10-23
+
+Fundacao do redesign do Ferinos (onda 0, arquivos 08 a 12 do Claude Design).
+
+### Alterado
+
+**Tons das superficies, escuro e claro.** Valores dos desenhos 08 a 11 (no escuro quem separa e o tom):
+
+| token | escuro | claro |
+| --- | --- | --- |
+| `--background` | #1B1E22 (era #0F1215) | #F5F7FA |
+| `--surface-1` card | #23262C (era #171B20) | #FFFFFF |
+| `--surface-2` sheet | #2A2E35 (era #1F242A) | #EEF2F6 (era #F8FAFC) |
+| `--surface-3` press | #343941 (era #272D34) | #E9EDF2 (era #EEF2F6) |
+| `--foreground` | #F2F4F6 | #1F242A (era #333333) |
+| `--muted-foreground` | #A3ABB4 (era #8C98A6) | #5C646E (era #666666) |
+| `--border` | #36393D (era #262B31) | #DCE2EA |
+| `--destructive` | #FF5A4E (era #FF453A) | #E5352B (era #EF4444) |
+| `--success` | #30D158 | #1E9E45 (era #34C759) |
+
+- `--primary-foreground` passa a ser a tinta escura #17120D (era branco): texto sobre laranja, como nos desenhos. Vale tambem para `--secondary-foreground`, `--accent-foreground` e `--warning-foreground`.
+- Ciano corrigido para `187 100% 58%` (#29E7FF exato; antes `190`).
+- `--card-foreground` e `--popover-foreground` apontam para `--foreground`.
+- `:root` tambem responde a `.light`, para forcar o claro dentro de um bloco escuro (miniatura do seletor de tema, stories lado a lado).
+- `tokens.ts` espelha tudo, com as chaves novas.
+
+### Adicionado
+
+**Tokens** (com utilitarios `bg-*`, `text-*`, `border-*`):
+- `--stage`: palco do evento ao vivo (escuro #262A31, claro #FFFFFF).
+- `--chrome`: tab bar, action bar e sidebar (escuro #16181C, claro #FFFFFF). Nenhum nivel de superficie cobria esse tom, mais escuro que o fundo.
+- `--you`: ciano "voce", sua linha e seu time, votacao (escuro #29E7FF, claro #0A8FA3, senao some no branco).
+- `--star`: amarelo de estrela e resultado (#FFD60A).
+- `--subtle-foreground`: texto 3, rotulo mono (escuro #727B85, claro #8A939C).
+- `--offline` / `--offline-foreground`: faixa de sem conexao (#3A2E1B / #FFD58A).
+- Animacao `animate-toast-in`.
+- `themeVars` (canais RGB por tema) e `tailwindVarColors` em `@eduardo-santosj/ui/tokens`: claro e escuro no React Native via `vars()` do NativeWind. `tailwindColors` continua (escuro fixo).
+
+**Pecas** (todas com story claro e escuro lado a lado):
+- `Stage`, `StageLabel`, `LiveTag`: palco nos tons default, live, vote e win; `stale` para sem conexao.
+- `ActionBar`: barra de acao no rodape.
+- `ActionToast`, `ActionToastProvider`, `useActionToast`: toast com uma acao, variantes desfazer (H5) e erro (T3). Nome novo para nao colidir com o `Toast` do Radix, que segue exportado.
+- `Podium`, `StatStrip`, `ScoreBoard` (domain).
+- `PillTabs`, `DateRow`, `GroupedList` / `Row`, `Stepper`, `SkeletonBlock`.
+- Cascas: `BottomNav` (tres abas, a primeira vira Torneios ou Rodadas pelo esporte), `AppSidebar`, `FerinoPill`, `ThemeSwitcher` (Automatico, Claro, Escuro), mais `eventsLabel` e `navItems`.
+
+**ConfirmDialog no formato I3**: circulo com "!", titulo, consequencia e dois botoes lado a lado, sem o X. API mantida; nova prop opcional `icon`.
+
+---
+
 ## [0.11.1] - 2026-10-14
 
 ### Corrigido

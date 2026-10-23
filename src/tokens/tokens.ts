@@ -8,7 +8,7 @@
  * muda o outro. O CSS continua sendo a fonte para o web; este objeto e a fonte
  * para tudo que nao le CSS.
  *
- * Uso no NativeWind (app dark-only):
+ * Uso no NativeWind (so escuro, cores fixas):
  *   const { tailwindColors } = require('@eduardo-santosj/ui/tokens');
  *   module.exports = { theme: { extend: { colors: tailwindColors } } };
  */
@@ -24,72 +24,95 @@ export const brand = {
   cream: '#F1EEE7',
 } as const;
 
-/** Tema escuro. Mesmos valores do bloco `.dark` em tokens.css. */
+/** Tema escuro. Mesmos valores do bloco `.dark` em tokens.css (desenhos 08 a 11). */
 export const dark = {
-  background: '#0F1215',
-  foreground: '#F5F7FA',
+  background: '#1B1E22',
+  foreground: '#F2F4F6',
 
-  surface1: '#171B20',
-  surface2: '#1F242A',
-  surface3: '#272D34',
+  surface1: '#23262C',
+  surface2: '#2A2E35',
+  surface3: '#343941',
+  /** Palco: bloco do evento ao vivo. */
+  stage: '#262A31',
+  /** Cromo: tab bar, action bar, sidebar. */
+  chrome: '#16181C',
 
-  card: '#171B20',
-  cardForeground: '#F5F7FA',
-  popover: '#1F242A',
-  popoverForeground: '#F5F7FA',
+  card: '#23262C',
+  cardForeground: '#F2F4F6',
+  popover: '#2A2E35',
+  popoverForeground: '#F2F4F6',
 
   primary: '#FF7E29',
-  primaryForeground: '#FFFFFF',
+  primaryForeground: '#17120D',
   secondary: '#29E7FF',
-  secondaryForeground: '#1A1A1A',
+  secondaryForeground: '#17120D',
 
-  muted: '#272D34',
-  mutedForeground: '#8C98A6',
+  /** Ciano "voce": sua linha, seu time, votacao. */
+  you: '#29E7FF',
+  /** Amarelo de estrela e resultado. */
+  star: '#FFD60A',
+
+  muted: '#343941',
+  mutedForeground: '#A3ABB4',
+  subtleForeground: '#727B85',
   accent: '#29E7FF',
-  accentForeground: '#1A1A1A',
+  accentForeground: '#17120D',
 
-  destructive: '#FF453A',
+  destructive: '#FF5A4E',
   destructiveForeground: '#FFFFFF',
   success: '#30D158',
   successForeground: '#062A10',
   warning: '#FFD60A',
-  warningForeground: '#1A1A1A',
+  warningForeground: '#17120D',
 
-  border: '#262B31',
-  input: '#262B31',
+  offline: '#3A2E1B',
+  offlineForeground: '#FFD58A',
+
+  border: '#36393D',
+  input: '#36393D',
   ring: '#FF7E29',
 } as const;
 
-/** Tema claro. Mesmos valores do bloco `:root` em tokens.css. */
+/** Tema claro. Mesmos valores do bloco `:root` em tokens.css (bloco .lt do 08). */
 export const light = {
   background: '#F5F7FA',
-  foreground: '#333333',
+  foreground: '#1F242A',
 
   surface1: '#FFFFFF',
-  surface2: '#F8FAFC',
-  surface3: '#EEF2F6',
+  surface2: '#EEF2F6',
+  surface3: '#E9EDF2',
+  stage: '#FFFFFF',
+  chrome: '#FFFFFF',
 
   card: '#FFFFFF',
-  cardForeground: '#333333',
-  popover: '#F8FAFC',
-  popoverForeground: '#333333',
+  cardForeground: '#1F242A',
+  popover: '#EEF2F6',
+  popoverForeground: '#1F242A',
 
   primary: '#FF7E29',
-  primaryForeground: '#FFFFFF',
+  primaryForeground: '#17120D',
   secondary: '#29E7FF',
-  secondaryForeground: '#1A1A1A',
+  secondaryForeground: '#17120D',
+
+  /** No claro o ciano escurece, senao some no branco. */
+  you: '#0A8FA3',
+  star: '#FFD60A',
 
   muted: '#E9EDF2',
-  mutedForeground: '#666666',
+  mutedForeground: '#5C646E',
+  subtleForeground: '#8A939C',
   accent: '#29E7FF',
-  accentForeground: '#1A1A1A',
+  accentForeground: '#17120D',
 
-  destructive: '#EF4444',
+  destructive: '#E5352B',
   destructiveForeground: '#FFFFFF',
-  success: '#34C759',
+  success: '#1E9E45',
   successForeground: '#FFFFFF',
   warning: '#FFCC00',
-  warningForeground: '#1A1A1A',
+  warningForeground: '#17120D',
+
+  offline: '#3A2E1B',
+  offlineForeground: '#FFD58A',
 
   border: '#DCE2EA',
   input: '#DCE2EA',
@@ -151,7 +174,8 @@ export const spacing = {
 
 /**
  * Pronto para `theme.extend.colors` do Tailwind / NativeWind.
- * O app nativo e dark-only, entao usa o tema escuro direto.
+ * Cores fixas do tema escuro (app que nao troca de tema).
+ * Para claro + escuro use `tailwindVarColors` + `themeVars`.
  * Mantem os nomes que o NativeWind ja usava (`primary`, `card`, `muted-foreground`...)
  * e adiciona os novos (`surface-1/2/3`, `success`, `warning`).
  */
@@ -182,12 +206,76 @@ export const tailwindColors = {
   'surface-1': dark.surface1,
   'surface-2': dark.surface2,
   'surface-3': dark.surface3,
+  stage: dark.stage,
+  chrome: dark.chrome,
+  you: dark.you,
+  star: dark.star,
+  'subtle-foreground': dark.subtleForeground,
+  offline: dark.offline,
+  'offline-foreground': dark.offlineForeground,
   'brand-orange': brand.orange,
   'brand-cyan': brand.cyan,
   'brand-dark': brand.dark,
   'brand-light': brand.light,
 } as const;
 
+/** Nome do token (kebab) -> chave do objeto de tema. */
+const TOKEN_KEYS = {
+  background: 'background', foreground: 'foreground',
+  'surface-1': 'surface1', 'surface-2': 'surface2', 'surface-3': 'surface3',
+  stage: 'stage', chrome: 'chrome',
+  card: 'card', 'card-foreground': 'cardForeground',
+  popover: 'popover', 'popover-foreground': 'popoverForeground',
+  primary: 'primary', 'primary-foreground': 'primaryForeground',
+  secondary: 'secondary', 'secondary-foreground': 'secondaryForeground',
+  you: 'you', star: 'star',
+  muted: 'muted', 'muted-foreground': 'mutedForeground', 'subtle-foreground': 'subtleForeground',
+  accent: 'accent', 'accent-foreground': 'accentForeground',
+  destructive: 'destructive', 'destructive-foreground': 'destructiveForeground',
+  success: 'success', 'success-foreground': 'successForeground',
+  warning: 'warning', 'warning-foreground': 'warningForeground',
+  offline: 'offline', 'offline-foreground': 'offlineForeground',
+  border: 'border', input: 'input', ring: 'ring',
+} as const satisfies Record<string, keyof typeof dark>;
+
+export type TokenName = keyof typeof TOKEN_KEYS;
+
+function channels(hex: string): string {
+  const h = hex.replace('#', '');
+  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)).join(' ');
+}
+
+function buildVars(theme: typeof dark | typeof light): Record<`--${TokenName}`, string> {
+  const out = {} as Record<`--${TokenName}`, string>;
+  (Object.keys(TOKEN_KEYS) as TokenName[]).forEach((name) => {
+    out[`--${name}`] = channels(theme[TOKEN_KEYS[name]]);
+  });
+  return out;
+}
+
+/**
+ * Variaveis por tema em canais RGB ("27 30 34"), para o tema claro/escuro no
+ * React Native: `vars(themeVars[scheme])` do NativeWind na raiz do app.
+ */
+export const themeVars = {
+  light: buildVars(light),
+  dark: buildVars(dark),
+} as const;
+
+/**
+ * `theme.extend.colors` do NativeWind quando o app troca de tema: cada cor le
+ * a variavel de `themeVars` e aceita opacidade (`bg-primary/10`). Marca fica fixa.
+ */
+export const tailwindVarColors = {
+  ...(Object.fromEntries(
+    (Object.keys(TOKEN_KEYS) as TokenName[]).map((name) => [name, `rgb(var(--${name}) / <alpha-value>)`]),
+  ) as Record<TokenName, string>),
+  'brand-orange': brand.orange,
+  'brand-cyan': brand.cyan,
+  'brand-dark': brand.dark,
+  'brand-light': brand.light,
+};
+
 export type BrandColors = typeof brand;
-export type ThemeColors = typeof dark;
+export type ThemeColors = { [K in keyof typeof dark]: string };
 export type TailwindColors = typeof tailwindColors;

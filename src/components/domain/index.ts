@@ -39,3 +39,12 @@ export type { ChampionshipGridSkeletonProps } from './Skeletons';
 
 export { MatchCard, MatchCardWithBadge } from './MatchCard';
 export type { MatchCardProps } from './MatchCard';
+
+export { Podium } from './Podium';
+export type { PodiumProps, PodiumEntry } from './Podium';
+
+export { StatStrip } from './StatStrip';
+export type { StatStripProps, Stat } from './StatStrip';
+
+export { ScoreBoard } from './ScoreBoard';
+export type { ScoreBoardProps, ScoreSide } from './ScoreBoard';

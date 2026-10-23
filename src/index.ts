@@ -30,6 +30,10 @@ export {
   // bracket
   MatchCard,
   MatchCardWithBadge,
+  // placar e ranking (0.12.0)
+  Podium,
+  StatStrip,
+  ScoreBoard,
 } from './components/domain';
 export type {
   ChampionshipCardProps,
@@ -52,6 +56,12 @@ export type {
   ExpandableDescriptionProps,
   ChampionshipGridSkeletonProps,
   MatchCardProps,
+  PodiumProps,
+  PodiumEntry,
+  StatStripProps,
+  Stat,
+  ScoreBoardProps,
+  ScoreSide,
 } from './components/domain';
 
 // -- Icones (lucide-react re-export) -------------------------------------------
@@ -228,6 +238,27 @@ export type { CalendarProps } from './components/ui/calendar';
 // Alert Toast -- toast com auto-dismiss, posicionado no canto da tela
 export { Alert, AlertProvider, useAlert } from './components/custom';
 export type { AlertType, AlertProps } from './components/custom';
+
+// Peças do novo layout (0.12.0)
+export { PillTabs, DateRow, GroupedList, Row, Stepper, SkeletonBlock } from './components/custom';
+export type {
+  PillTabOption, PillTabsProps, DateRowProps, GroupedListProps, RowProps, StepperProps, SkeletonBlockProps,
+} from './components/custom';
+export { Stage, StageLabel, LiveTag, ActionBar, ActionToast, ActionToastProvider, useActionToast } from './components/custom';
+export type {
+  StageProps, StageTone, StageLabelProps, LiveTagProps, ActionBarProps,
+  ActionToastProps, ActionToastOptions, ActionToastTone,
+} from './components/custom';
+
+// ==============================================================================
+// CASCAS DO APP (0.12.0): navegacao de tres abas, Ferino ativo, aparencia
+// ==============================================================================
+
+export { BottomNav, AppSidebar, FerinoPill, ThemeSwitcher, eventsLabel, navItems } from './components/shell';
+export type {
+  BottomNavProps, AppSidebarProps, AppSidebarFerino, FerinoPillProps,
+  ThemeSwitcherProps, ThemePreference, NavTab, NavProps,
+} from './components/shell';
 
 // ==============================================================================
 // MARCA

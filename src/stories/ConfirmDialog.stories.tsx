@@ -61,3 +61,43 @@ export const ComLoading: Story = {
     />
   ),
 };
+
+// O Dialog abre em portal no <body>: o tema vem do seletor da barra do
+// Storybook (claro/escuro), nao do painel.
+function EncerrarRodada() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button variant="destructive" onClick={() => setOpen(true)}>Encerrar a rodada</Button>
+      <ConfirmDialog
+        open={open}
+        onOpenChange={setOpen}
+        title="Encerrar a rodada?"
+        description="Os pontos vão pro ranking e a rodada não aceita mais gol nem voto. Dá pra recalcular depois, mas não pra reabrir."
+        confirmLabel="Encerrar"
+        cancelLabel="Agora não"
+        onConfirm={() => setOpen(false)}
+      />
+    </>
+  );
+}
+
+export const FormatoI3: Story = {
+  name: 'Formato I3 (troque o tema na barra)',
+  render: () => <EncerrarRodada />,
+};
+
+export const FormatoI3Aberto: Story = {
+  name: 'Formato I3 aberto',
+  render: () => (
+    <ConfirmDialog
+      open
+      onOpenChange={() => {}}
+      title="Encerrar a rodada?"
+      description="Os pontos vão pro ranking e a rodada não aceita mais gol nem voto. Dá pra recalcular depois, mas não pra reabrir."
+      confirmLabel="Encerrar"
+      cancelLabel="Agora não"
+      onConfirm={() => {}}
+    />
+  ),
+};
