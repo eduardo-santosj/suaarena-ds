@@ -6,6 +6,21 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.15.0] - 2026-10-23
+
+Pecas de configuracao, entrada e telao (ondas 4 e 7, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente muda.
+
+### Adicionado
+
+- `SavedIndicator` (custom): indicador de seção que salva sozinha. Props: `status` (`idle`, `saving`, `saved`, `error`), `when`, `className`.
+- `StepChecklist` (custom): roteiro de passos (L3). Props: `steps` (`key`, `title`, `description`, `done`), `onStepClick`, `showProgress`, `className`.
+- `SportPicker` (custom): esporte em blocos (P3). Props: `options` (`key`, `label`, `description`, `icon`), `value`, `onChange`, `className`.
+- `FerinoCard` (domain): cartao de Ferino com o que esta acontecendo (P2). Props: `name`, `meta`, `initials`, `logo`, `tone` (`primary`, `success`, `neutral`), `active`, `live`, `pending`, `pendingLabel`, `info`, `onClick`, `className`.
+- `AuthShell`, `SocialButton`, `AuthDivider` (custom): casca de login com o `Logo` do DS, botoes de entrada (Google e passkey; sem Apple) e divisor. `AuthShell`: `title`, `subtitle`, `product`, `children`, `footer`, `className`. `SocialButton`: `provider` (`google`, `passkey`), `label`, `icon`, `loading`, mais props de `button`.
+- `TvShell`, `TvPanel`, `TvRow`, `TvScore` (custom): casca do telao desenhada em 1280x720 e escalada para 1920x1080 (ou a TV que for). `TvShell`: `title`, `label`, `status`, `children`, `aside`, `asideWidth`, `footerStart`, `footerEnd`, `fit`, `className`. `TvScore`: `a`, `b` (`name`, `score`, `detail`, `color`), `label`, `layout` (`stacked`, `sides`), `footer`. `TvPanel`: `label`, `tone`. `TvRow`: `value`.
+- `QrBlock` (custom): bloco de QR com chamada. O DS nao gera QR: quem usa passa o desenho como `children`. Props: `children`, `title`, `url`, `layout` (`inline`, `stacked`), `size`, `className`.
+- Stories claro e escuro de todas as pecas.
+
 ## [0.14.0] - 2026-10-23
 
 Pecas de ranking, perfil do atleta e avisos (ondas 3 e 6, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente quebra.

@@ -42,6 +42,8 @@ export {
   // ranking e perfil (0.14.0)
   FormStrip,
   MyRankCard,
+  // entrada e configuracao (0.15.0)
+  FerinoCard,
 } from './components/domain';
 export type {
   ChampionshipCardProps,
@@ -80,6 +82,8 @@ export type {
   FormStripProps,
   FormResult,
   MyRankCardProps,
+  FerinoCardProps,
+  FerinoCardTone,
   ScoreSide,
 } from './components/domain';
 
@@ -274,6 +278,16 @@ export {
 export type {
   BarChartProps, BarChartBar, NotificationBellProps, NoticeItemProps, NoticeKind, NoticeTone,
   NotificationPanelProps, NotificationMenuProps, PermissionCardProps,
+} from './components/custom';
+
+// Config, entrada e telao (0.15.0)
+export {
+  SavedIndicator, StepChecklist, SportPicker, QrBlock, AuthShell, SocialButton, AuthDivider,
+  TvShell, TvPanel, TvRow, TvScore,
+} from './components/custom';
+export type {
+  SavedIndicatorProps, SavedStatus, StepChecklistProps, ChecklistStep, SportPickerProps, SportOption,
+  QrBlockProps, AuthShellProps, SocialButtonProps, TvShellProps, TvPanelProps, TvRowProps, TvScoreProps, TvScoreSide,
 } from './components/custom';
 export type {
   PillTabOption, PillTabsProps, DateRowProps, GroupedListProps, RowProps, StepperProps, SkeletonBlockProps,

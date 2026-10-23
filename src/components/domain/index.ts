@@ -63,3 +63,6 @@ export type { FormStripProps, FormResult } from './FormStrip';
 
 export { MyRankCard } from './MyRankCard';
 export type { MyRankCardProps } from './MyRankCard';
+
+export { FerinoCard } from './FerinoCard';
+export type { FerinoCardProps, FerinoCardTone } from './FerinoCard';
