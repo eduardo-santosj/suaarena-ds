@@ -6,6 +6,26 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.14.0] - 2026-10-23
+
+Pecas de ranking, perfil do atleta e avisos (ondas 3 e 6, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente quebra.
+
+### Adicionado
+
+- `BarChart` (custom): barras simples, "pontos por mes". Props: `bars` (`key`, `label`, `value`, `active`), `height`, `className`.
+- `FormStrip` (domain): cartao "Ultimas 5" com pastilhas V/E/D. Props: `results`, `label`, `className`.
+- `MyRankCard` (domain): cartao "sua linha" do ranking em ciano (token `you`). Props: `position`, `initials`, `title`, `subtitle`, `points`, `footer`, `className`.
+- `NotificationBell` (custom): sino com ponto vermelho. Props: `unread` (numero ou boolean), `active`, `size` (`md`, `lg`) e as de `button`.
+- `NoticeItem` (custom): item de aviso com icone Lucide por assunto. Props: `kind` (`presenca`, `evento`, `votacao`, `resultado`, `ranking`, `cobranca`, `pedido`), `icon`, `tone`, `title`, `description`, `meta`, `unread`, `elevated`, `onClick`, `className`.
+- `NotificationPanel` (custom): painel de avisos do web. Props: `children`, `title`, `onMarkAllRead`, `onSeeAll`, `emptyText`, `className`.
+- `NotificationMenu` (custom): sino que abre o `NotificationPanel` num Popover. Props do painel mais `unread`, `open`, `onOpenChange`, `className`.
+- `PermissionCard` (custom): pedido de permissao de aviso. Props: `title`, `description`, `icon`, `acceptLabel`, `dismissLabel`, `onAccept`, `onDismiss`, `layout` (`stacked`, `inline`), `className`.
+- Stories claro e escuro de todas as pecas.
+
+### Alterado (aditivo)
+
+- `StandingsTable`: novas props opcionais `columns` (cabecalhos apos o nome), `wide` e, por linha, `cells` e `selected`. Com `columns` a tabela serve ao ranking (Torneios, Titulos, 1o, 2o, 3o, Pts) e a tabela da pelada; a ultima coluna fica em destaque e, se negativa, em vermelho. As colunas de torneio (J V D PF PS SP P) e os campos `played`, `wins`, `losses`, `pointsFor`, `pointsAgainst`, `points` continuam como eram (agora opcionais no tipo).
+
 ## [0.13.0] - 2026-10-23
 
 Pecas da rodada da pelada (onda 2, arquivo 09) e do torneio por formato (onda 1, arquivo 08). So adicoes: nenhuma API existente mudou.

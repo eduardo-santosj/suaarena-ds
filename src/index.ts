@@ -39,6 +39,9 @@ export {
   // torneio (0.13.0)
   StandingsTable,
   MatchRow,
+  // ranking e perfil (0.14.0)
+  FormStrip,
+  MyRankCard,
 } from './components/domain';
 export type {
   ChampionshipCardProps,
@@ -74,6 +77,9 @@ export type {
   MatchRowProps,
   MatchRowSide,
   MatchRowTagTone,
+  FormStripProps,
+  FormResult,
+  MyRankCardProps,
   ScoreSide,
 } from './components/domain';
 
@@ -259,6 +265,15 @@ export { ProgressRing, StarVote, SegmentedProgress } from './components/custom';
 export type {
   ProgressRingProps, ProgressRingTone, StarVoteProps, StarVoteTone, StarVoteSize,
   SegmentedProgressProps,
+} from './components/custom';
+
+// Ranking, perfil e avisos (0.14.0)
+export {
+  BarChart, NotificationBell, NoticeItem, NotificationPanel, NotificationMenu, PermissionCard,
+} from './components/custom';
+export type {
+  BarChartProps, BarChartBar, NotificationBellProps, NoticeItemProps, NoticeKind, NoticeTone,
+  NotificationPanelProps, NotificationMenuProps, PermissionCardProps,
 } from './components/custom';
 export type {
   PillTabOption, PillTabsProps, DateRowProps, GroupedListProps, RowProps, StepperProps, SkeletonBlockProps,

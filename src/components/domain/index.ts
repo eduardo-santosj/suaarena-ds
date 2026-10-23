@@ -57,3 +57,9 @@ export type { StandingsTableProps, StandingsRow } from './StandingsTable';
 
 export { MatchRow } from './MatchRow';
 export type { MatchRowProps, MatchRowSide, MatchRowTagTone } from './MatchRow';
+
+export { FormStrip } from './FormStrip';
+export type { FormStripProps, FormResult } from './FormStrip';
+
+export { MyRankCard } from './MyRankCard';
+export type { MyRankCardProps } from './MyRankCard';
