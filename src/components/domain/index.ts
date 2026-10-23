@@ -48,3 +48,12 @@ export type { StatStripProps, Stat } from './StatStrip';
 
 export { ScoreBoard } from './ScoreBoard';
 export type { ScoreBoardProps, ScoreSide } from './ScoreBoard';
+
+export { TeamCard } from './TeamCard';
+export type { TeamCardProps, TeamCardPlayer, TeamCardStatusTone } from './TeamCard';
+
+export { StandingsTable } from './StandingsTable';
+export type { StandingsTableProps, StandingsRow } from './StandingsTable';
+
+export { MatchRow } from './MatchRow';
+export type { MatchRowProps, MatchRowSide, MatchRowTagTone } from './MatchRow';

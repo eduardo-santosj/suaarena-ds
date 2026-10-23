@@ -50,3 +50,18 @@ export const Futevolei: Story = {
     </TemasLado>
   ),
 };
+
+export const Empilhado: Story = {
+  name: 'Empilhado (torneio)',
+  render: () => (
+    <TemasLado>
+      <ScoreBoard
+        layout="stacked"
+        a={{ name: 'Bruno e Caio', score: 17 }}
+        b={{ name: 'Diego e Rafa', score: 15 }}
+        goalLabel="+1"
+        onGoal={() => {}}
+      />
+    </TemasLado>
+  ),
+};

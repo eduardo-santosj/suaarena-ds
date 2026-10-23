@@ -34,6 +34,11 @@ export {
   Podium,
   StatStrip,
   ScoreBoard,
+  // rodada da pelada (0.13.0)
+  TeamCard,
+  // torneio (0.13.0)
+  StandingsTable,
+  MatchRow,
 } from './components/domain';
 export type {
   ChampionshipCardProps,
@@ -61,6 +66,14 @@ export type {
   StatStripProps,
   Stat,
   ScoreBoardProps,
+  TeamCardProps,
+  TeamCardPlayer,
+  TeamCardStatusTone,
+  StandingsTableProps,
+  StandingsRow,
+  MatchRowProps,
+  MatchRowSide,
+  MatchRowTagTone,
   ScoreSide,
 } from './components/domain';
 
@@ -241,6 +254,12 @@ export type { AlertType, AlertProps } from './components/custom';
 
 // Peças do novo layout (0.12.0)
 export { PillTabs, DateRow, GroupedList, Row, Stepper, SkeletonBlock } from './components/custom';
+// Rodada da pelada (0.13.0)
+export { ProgressRing, StarVote, SegmentedProgress } from './components/custom';
+export type {
+  ProgressRingProps, ProgressRingTone, StarVoteProps, StarVoteTone, StarVoteSize,
+  SegmentedProgressProps,
+} from './components/custom';
 export type {
   PillTabOption, PillTabsProps, DateRowProps, GroupedListProps, RowProps, StepperProps, SkeletonBlockProps,
 } from './components/custom';

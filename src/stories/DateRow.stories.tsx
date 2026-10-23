@@ -22,11 +22,11 @@ export const Torneio: Story = {
 
 export const ComCampeao: Story = {
   name: 'Anterior com campeão',
-  args: { weekday: 'sáb', day: '11', month: 'out', title: 'Torneio Ferino Outubro', subtitle: '🏆 Bruno e Caio', right: Seta, onClick: () => {} },
+  args: { weekday: 'sáb', day: '11', month: 'out', title: 'Torneio Ferino Outubro', subtitle: 'Campeões: Bruno e Caio', right: Seta, onClick: () => {} },
 };
 
 export const Rodada: Story = {
-  args: { weekday: 'qui', day: '16', month: 'out', title: '6 jogos · 16 jogadores', subtitle: '⭐ Rafa · ⚽ Bruno 4', right: Seta, onClick: () => {} },
+  args: { weekday: 'qui', day: '16', month: 'out', title: '6 jogos · 16 jogadores', subtitle: 'Craque Rafa · artilheiro Bruno (4)', right: Seta, onClick: () => {} },
 };
 
 export const ClaroEEscuro: Story = {
@@ -36,7 +36,7 @@ export const ClaroEEscuro: Story = {
     <TemasLado>
       <div className="space-y-2">
         <DateRow weekday="sáb" day="01" month="nov" title="Ferino de Novembro" subtitle="Praia Brava · inscrições abertas · 14 duplas" right={Aberto} />
-        <DateRow weekday="sáb" day="11" month="out" title="Torneio Ferino Outubro" subtitle="🏆 Bruno e Caio" right={Seta} onClick={() => {}} />
+        <DateRow weekday="sáb" day="11" month="out" title="Torneio Ferino Outubro" subtitle="Campeões: Bruno e Caio" right={Seta} onClick={() => {}} />
       </div>
     </TemasLado>
   ),

@@ -6,6 +6,21 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.13.0] - 2026-10-23
+
+Pecas da rodada da pelada (onda 2, arquivo 09) e do torneio por formato (onda 1, arquivo 08). So adicoes: nenhuma API existente mudou.
+
+### Adicionado
+
+- `ProgressRing` (custom): anel de progresso com numero e legenda no centro, o "14 de 22" da presenca. Props: `value` (0 a 1), `size`, `stroke`, `tone` (`primary`, `you`, `success`, `foreground`), `label`, `caption`, `children`, `className`.
+- `StarVote` (custom): estrelas de voto de 1 a 5. Props: `value`, `onChange`, `readOnly`, `count`, `size` (`sm`, `md`, `lg`), `tone` (`star` amarelo no resultado, `vote` ciano na votacao), `className`. Tocar na nota atual zera.
+- `TeamCard` (domain): cartao de time da pelada, com cor do time, estado (em quadra, no banco) e jogadores com estatistica. Props: `name`, `color`, `status`, `statusTone` (`live`, `muted`), `players` (`name`, `goalkeeper`, `stat`, `you`), `compact`, `highlight`, `className`.
+- `StandingsTable` (domain): classificacao do torneio com colunas fixas `# Nome J V D PF PS SP P`, sem rolagem lateral. Props: `rows` (`key`, `name`, `played`, `wins`, `losses`, `pointsFor`, `pointsAgainst`, `points`, `me`, `note`), `nameLabel` (padrao "Dupla"), `qualifyCount`, `onRowClick`, `className`. SP e calculado (PF menos PS, com sinal).
+- `MatchRow` (domain): linha de jogo com dois lados empilhados e placar em mono. Props: `a`, `b` (`name`, `score`), `winner`, `label`, `tag`, `tagTone` (`muted`, `primary`, `success`, `live`), `note`, `dim`, `you`, `onClick`, `className`. Placar nulo mostra hifen.
+- `SegmentedProgress` (custom): barrinhas de progresso por etapa. Props: `total`, `current`, `done`, `label`, `className`.
+- `ScoreBoard`: nova prop opcional `layout` (`'sides'` padrao, igual a hoje, ou `'stacked'`: uma linha por time, nome a esquerda e placar grande a direita). Aditivo, sem quebra.
+- Stories claro e escuro de todas as pecas.
+
 ## [0.12.0] - 2026-10-23
 
 Fundacao do redesign do Ferinos (onda 0, arquivos 08 a 12 do Claude Design).

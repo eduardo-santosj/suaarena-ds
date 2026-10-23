@@ -26,3 +26,12 @@ export type { ActionBarProps } from './ActionBar';
 
 export { ActionToast, ActionToastProvider, useActionToast } from './ActionToast';
 export type { ActionToastProps, ActionToastOptions, ActionToastTone } from './ActionToast';
+
+export { ProgressRing } from './ProgressRing';
+export type { ProgressRingProps, ProgressRingTone } from './ProgressRing';
+
+export { StarVote } from './StarVote';
+export type { StarVoteProps, StarVoteTone, StarVoteSize } from './StarVote';
+
+export { SegmentedProgress } from './SegmentedProgress';
+export type { SegmentedProgressProps } from './SegmentedProgress';
