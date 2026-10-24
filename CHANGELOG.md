@@ -6,6 +6,20 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.17.0] - 2026-10-23
+
+Pecas do painel do super admin (Premium e faturamento). So adicoes: nenhuma API existente muda.
+
+### Adicionado
+
+- Token `series-3` (violeta, `bg-series-3`, `stroke-series-3`) para a terceira serie de grafico, com valor proprio no claro e no escuro. Ordem fixa das series: laranja (`primary`), ciano (`you`), violeta (`series-3`).
+- `KpiTile` (custom): numero grande, rotulo mono e variacao com seta. Props: `label`, `value`, `delta` (percentual), `deltaLabel`, `invertDelta` (subir e ruim, ex.: cancelamentos), `hint`, `accent`, `className`.
+- `LineAreaChart` (custom): linha/area por periodo com uma serie por origem, grade discreta, ponteiro com tooltip, legenda e tabela para leitor de tela. Props: `labels`, `series` (`key`, `label`, `tone`, `values`), `area`, `height`, `formatValue`, `aria-label`, `className`.
+- `DonutChart` (custom): rosca de proporcao com total no centro e legenda com valor e percentual. Props: `slices` (`key`, `label`, `value`, `tone`), `size`, `centerValue`, `centerLabel`, `formatValue`, `aria-label`, `className`.
+- `DataTable` (custom): tabela com slot de filtros (use `PillTabs`), paginacao "1-10 de N" e estado vazio. Controlada. Props: `columns` (`key`, `header`, `render`, `align`, `hideOnMobile`), `rows`, `rowKey`, `filters`, `page`, `pageSize`, `total`, `onPageChange`, `loading`, `emptyText`, `caption`, `className`.
+- Tipo `SeriesTone` (`primary`, `you`, `series-3`, `success`, `destructive`, `star`).
+- Stories claro e escuro em `Painel/Dashboard`.
+
 ## [0.16.0] - 2026-10-23
 
 Pecas de passkey, offline e estados (ondas 5 e 8, arquivos 10 e 11 do Claude Design). So adicoes: nenhuma API existente muda.

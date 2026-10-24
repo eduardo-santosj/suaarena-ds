@@ -75,5 +75,10 @@ export type { OfflineBannerProps, StaleTagProps, QueueItemProps, QueueStatus } f
 export { PasskeySheet, SessionExpiredSheet } from './AuthSheets';
 export type { PasskeySheetProps, SessionExpiredSheetProps } from './AuthSheets';
 
+export { KpiTile, LineAreaChart, DonutChart, DataTable } from './Dashboard';
+export type {
+  KpiTileProps, LineAreaChartProps, LineAreaSeries, DonutChartProps, DonutSlice, DataTableProps, DataTableColumn, SeriesTone,
+} from './Dashboard';
+
 export { DelayedSkeleton, StageSkeleton, DateRowSkeleton, ListRowSkeleton, ScreenSkeleton } from './ScreenSkeletons';
 export type { DelayedSkeletonProps, ScreenSkeletonProps } from './ScreenSkeletons';

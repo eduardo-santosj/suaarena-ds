@@ -51,6 +51,8 @@ export const dark = {
   you: '#29E7FF',
   /** Amarelo de estrela e resultado. */
   star: '#FFD60A',
+  /** Terceira serie de grafico (laranja, ciano, violeta). */
+  series3: '#B493FF',
 
   muted: '#343941',
   mutedForeground: '#A3ABB4',
@@ -97,6 +99,7 @@ export const light = {
   /** No claro o ciano escurece, senao some no branco. */
   you: '#0A8FA3',
   star: '#FFD60A',
+  series3: '#6C3DC2',
 
   muted: '#E9EDF2',
   mutedForeground: '#5C646E',
@@ -210,6 +213,7 @@ export const tailwindColors = {
   chrome: dark.chrome,
   you: dark.you,
   star: dark.star,
+  'series-3': dark.series3,
   'subtle-foreground': dark.subtleForeground,
   offline: dark.offline,
   'offline-foreground': dark.offlineForeground,
@@ -228,7 +232,7 @@ const TOKEN_KEYS = {
   popover: 'popover', 'popover-foreground': 'popoverForeground',
   primary: 'primary', 'primary-foreground': 'primaryForeground',
   secondary: 'secondary', 'secondary-foreground': 'secondaryForeground',
-  you: 'you', star: 'star',
+  you: 'you', star: 'star', 'series-3': 'series3',
   muted: 'muted', 'muted-foreground': 'mutedForeground', 'subtle-foreground': 'subtleForeground',
   accent: 'accent', 'accent-foreground': 'accentForeground',
   destructive: 'destructive', 'destructive-foreground': 'destructiveForeground',

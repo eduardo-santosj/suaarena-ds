@@ -290,6 +290,12 @@ export type {
   QrBlockProps, AuthShellProps, SocialButtonProps, TvShellProps, TvPanelProps, TvRowProps, TvScoreProps, TvScoreSide,
 } from './components/custom';
 
+// Painel (0.17.0)
+export { KpiTile, LineAreaChart, DonutChart, DataTable } from './components/custom';
+export type {
+  KpiTileProps, LineAreaChartProps, LineAreaSeries, DonutChartProps, DonutSlice, DataTableProps, DataTableColumn, SeriesTone,
+} from './components/custom';
+
 // Passkey, offline e estados (0.16.0)
 export {
   OfflineBanner, StaleTag, QueueItem, agoLabel, PasskeySheet, SessionExpiredSheet,
