@@ -6,6 +6,14 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.17.1] - 2026-10-23
+
+### Corrigido
+
+- `dist` com `"use client"` na primeira linha de `index` e `icons` (ESM e CJS). O flag `treeshake: true` do tsup passava o bundle pelo Rollup, que descartava a diretiva do banner, e importar o barrel num server component do Next 15 quebrava. `tokens` e `tailwind-preset` continuam sem a diretiva (rodam no Node e no React Native). Nenhuma API muda.
+
+---
+
 ## [0.17.0] - 2026-10-23
 
 Pecas do painel do super admin (Premium e faturamento). So adicoes: nenhuma API existente muda.
