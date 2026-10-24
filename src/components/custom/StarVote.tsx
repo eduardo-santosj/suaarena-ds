@@ -34,9 +34,13 @@ const ON: Record<StarVoteTone, string> = {
   vote: 'fill-you text-you',
 };
 
+/** Estrela sem nota: contorno no texto 3 (contraste de UI nos dois temas) e miolo leve. */
+const OFF = 'fill-subtle-foreground/20 text-subtle-foreground';
+
 /**
  * Estrelas de voto de 1 a 5. Amarelo (token star) no resultado, ciano (token
- * you) enquanto a votacao esta aberta. A estrela apagada e o trilho do tema.
+ * you) enquanto a votacao esta aberta. A estrela sem nota tem contorno visivel
+ * (token subtle-foreground) para nao sumir no card, no claro e no escuro.
  */
 export function StarVote({
   value, onChange, readOnly, count = 5, size = 'md', tone = 'star', className, 'aria-label': ariaLabel,
@@ -53,7 +57,7 @@ export function StarVote({
         const active = n <= value;
         const icon = (
           <Star
-            className={cn(SIZE[size], active ? ON[tone] : 'fill-muted-foreground/25 text-muted-foreground/25')}
+            className={cn(SIZE[size], active ? ON[tone] : OFF)}
             aria-hidden="true"
           />
         );

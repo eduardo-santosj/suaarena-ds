@@ -6,6 +6,15 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.17.2] - 2026-10-24
+
+### Corrigido
+
+- `StarVote`: a estrela sem nota quase sumia no card (cinza a 25% sobre branco no claro, fraca no escuro). Agora tem contorno no token `subtle-foreground` com miolo a 20%, contraste de UI nos dois temas. Nenhuma API muda.
+- Story `Layout/StarVote` "Sem nota, claro e escuro".
+
+---
+
 ## [0.17.1] - 2026-10-23
 
 ### Corrigido

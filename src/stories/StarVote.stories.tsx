@@ -38,6 +38,28 @@ export const Tamanhos: Story = {
   ),
 };
 
+export const SemNota: Story = {
+  name: 'Sem nota, claro e escuro',
+  render: () => (
+    <div className="w-[560px] max-w-full">
+      <TemasLado>
+        <div className="space-y-3">
+          {['Rafa', 'Mateus'].map((n) => (
+            <div key={n} className="flex items-center justify-between rounded-[14px] bg-card px-3.5 py-2.5">
+              <span className="text-sm font-semibold text-foreground">{n}</span>
+              <Demo start={0} size="sm" />
+            </div>
+          ))}
+          <div className="flex items-center justify-between rounded-[14px] bg-surface-1 px-3.5 py-2.5">
+            <span className="text-sm font-semibold text-foreground">Voce</span>
+            <StarVote value={0} readOnly size="sm" />
+          </div>
+        </div>
+      </TemasLado>
+    </div>
+  ),
+};
+
 export const ClaroEEscuro: Story = {
   name: 'Claro e escuro',
   render: () => (
