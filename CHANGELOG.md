@@ -6,6 +6,23 @@ Este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.17.3] - 2026-11-06
+
+### Corrigido
+
+- `Logo` com `product` (`torneio` ou `ferinos`) ignorava o tom do `variant` e sempre desenhava a versão de fundo escuro, então no tema claro o logo sumia ou quebrava. Agora `horizontal-light`, `vertical-light`, `icon-light` e `icon-gelo` desenham a versão de fundo claro (mesmo desenho e viewBox, texto e partes brancas em `#1A1D21`, laranja preservado). `horizontal-dark`, `vertical-dark` e os demais seguem como antes.
+- `AuthShell`: o login do Torneios e do Ferinos no tema claro ficava com o logo apagado por causa do item acima. As duas versões do logo entram no HTML e o CSS escolhe pela classe `dark` do html (padrão next-themes), sem JS. O `aria-label` agora acompanha o produto.
+
+### Adicionado
+
+- `Logo`: variant `vertical-light` (fundo claro), com ou sem `product`.
+- `AuthShell`: prop opcional `logo` (ReactNode) que substitui o logo padrão.
+- Stories do `Logo` (produto em fundo claro) e do `AuthShell` (Torneios e logo próprio).
+
+Nenhuma API muda: o que já funcionava continua igual.
+
+---
+
 ## [0.17.2] - 2026-10-24
 
 ### Corrigido

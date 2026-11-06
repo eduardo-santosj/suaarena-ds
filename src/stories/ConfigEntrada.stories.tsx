@@ -107,3 +107,25 @@ export const ClaroEEscuro: Story = {
     </TemasLado>
   ),
 };
+
+function LoginProduto({ product, logo }: { product?: 'torneio' | 'ferinos'; logo?: React.ReactNode }) {
+  return (
+    <AuthShell title="Bem-vindo de volta" subtitle="Entre na sua conta." product={product} logo={logo}>
+      <SocialButton provider="google" label="Continuar com Google" />
+      <AuthDivider />
+      <FormField label="E-mail"><Input type="email" placeholder="edu@email.com" /></FormField>
+    </AuthShell>
+  );
+}
+
+export const EntradaTorneios: Story = {
+  name: 'Casca de login, Torneios (logo troca com o tema)',
+  parameters: { layout: 'fullscreen' },
+  render: () => <LoginProduto product="torneio" />,
+};
+
+export const EntradaLogoProprio: Story = {
+  name: 'Casca de login, logo próprio',
+  parameters: { layout: 'fullscreen' },
+  render: () => <LoginProduto logo={<span className="font-display text-2xl font-extrabold text-foreground">Logo do cliente</span>} />,
+};

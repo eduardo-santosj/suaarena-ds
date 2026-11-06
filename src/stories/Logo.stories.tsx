@@ -19,7 +19,7 @@ const meta: Meta<typeof Logo> = {
           '**Ícone:** `icon-orange` · `icon-dark` · `icon-light` · `icon-gelo`\n\n' +
           '**Horizontal:** `horizontal-dark` (fundo escuro) · `horizontal-light` (fundo claro)\n\n' +
           '**Vertical:** `vertical-dark` (fundo escuro) · `vertical-orange` (fundo laranja)\n\n' +
-          '**Produto:** `product="torneio"` ou `product="ferinos"` — layout herdado do `variant`.',
+          '**Produto:** `product="torneio"` ou `product="ferinos"` — layout e tom herdados do `variant`. `horizontal-light`, `vertical-light`, `icon-light` e `icon-gelo` desenham a versão de fundo claro; os demais, a de fundo escuro.',
       },
     },
   },
@@ -29,7 +29,7 @@ const meta: Meta<typeof Logo> = {
       options: [
         'icon-orange', 'icon-dark', 'icon-light', 'icon-gelo',
         'horizontal-dark', 'horizontal-light',
-        'vertical-dark', 'vertical-orange',
+        'vertical-dark', 'vertical-light', 'vertical-orange',
       ],
     },
     product: {
@@ -45,7 +45,7 @@ const meta: Meta<typeof Logo> = {
       if (variant.includes('-dark'))   bg = DARK_BG;
       if (variant.includes('-orange')) bg = ORANGE_BG;
       if (variant.includes('-gelo'))   bg = GELO_BG;
-      if (context.args.product)        bg = DARK_BG;
+      if (context.args.product && !variant.includes('-light') && !variant.includes('-gelo')) bg = DARK_BG;
       return (
         <div style={{ backgroundColor: bg }} className="p-8 rounded-lg inline-flex">
           <Story />
@@ -94,6 +94,10 @@ export const VerticalDark: Story = {
   name: 'Vertical — fundo escuro',
   args: { variant: 'vertical-dark', height: 96 },
 };
+export const VerticalLight: Story = {
+  name: 'Vertical — fundo claro',
+  args: { variant: 'vertical-light', height: 96 },
+};
 export const VerticalOrange: Story = {
   name: 'Vertical — fundo laranja',
   args: { variant: 'vertical-orange', height: 96 },
@@ -127,6 +131,33 @@ export const FerinosVerticalStory: Story = {
 export const FerinosIconStory: Story = {
   name: 'Ferinos — ícone',
   args: { product: 'ferinos', variant: 'icon-dark', height: 80 },
+};
+
+/* ── Produto no tema claro ───────────────────────────────────────── */
+
+export const TorneiosHorizontalClaro: Story = {
+  name: 'Torneios — horizontal, fundo claro',
+  args: { product: 'torneio', variant: 'horizontal-light', height: 56 },
+};
+export const TorneiosVerticalClaro: Story = {
+  name: 'Torneios — vertical, fundo claro',
+  args: { product: 'torneio', variant: 'vertical-light', height: 96 },
+};
+export const TorneiosIconClaro: Story = {
+  name: 'Torneios — ícone, fundo claro',
+  args: { product: 'torneio', variant: 'icon-light', height: 80 },
+};
+export const FerinosHorizontalClaro: Story = {
+  name: 'Ferinos — horizontal, fundo claro',
+  args: { product: 'ferinos', variant: 'horizontal-light', height: 56 },
+};
+export const FerinosVerticalClaro: Story = {
+  name: 'Ferinos — vertical, fundo claro',
+  args: { product: 'ferinos', variant: 'vertical-light', height: 96 },
+};
+export const FerinosIconClaro: Story = {
+  name: 'Ferinos — ícone, fundo claro',
+  args: { product: 'ferinos', variant: 'icon-light', height: 80 },
 };
 
 /* ── Showcases ──────────────────────────────────────────────────────────────── */
@@ -174,6 +205,28 @@ export const AllProducts: Story = {
       <div style={{ backgroundColor: DARK_BG }} className="p-6 rounded-lg flex flex-wrap gap-8 items-center">
         <Logo product="torneio" variant="icon-dark" height={72} />
         <Logo product="ferinos" variant="icon-dark" height={72} />
+      </div>
+    </div>
+  ),
+};
+
+export const AllProductsLight: Story = {
+  name: 'Variantes de produto, fundo claro',
+  parameters: { controls: { disable: true }, backgrounds: { disable: true } },
+  decorators: [(Story) => <Story />],
+  render: () => (
+    <div style={{ backgroundColor: LIGHT_BG }} className="p-6 rounded-lg space-y-6">
+      <div className="flex flex-wrap gap-12 items-center">
+        <Logo product="torneio" variant="horizontal-light" height={52} />
+        <Logo product="ferinos" variant="horizontal-light" height={52} />
+      </div>
+      <div className="flex flex-wrap gap-12 items-end">
+        <Logo product="torneio" variant="vertical-light" height={80} />
+        <Logo product="ferinos" variant="vertical-light" height={80} />
+      </div>
+      <div className="flex flex-wrap gap-8 items-center">
+        <Logo product="torneio" variant="icon-light" height={72} />
+        <Logo product="ferinos" variant="icon-light" height={72} />
       </div>
     </div>
   ),

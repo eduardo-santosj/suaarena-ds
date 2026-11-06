@@ -7,6 +7,8 @@ export interface AuthShellProps {
   subtitle?: string;
   /** Produto do logo. Padrão: ferinos. */
   product?: LogoProduct;
+  /** Logo próprio. Quando passado, substitui o logo padrão (as duas versões por tema). */
+  logo?: React.ReactNode;
   /** Botões de entrada (passkey, Google), o divisor e o formulário. */
   children: React.ReactNode;
   /** Rodapé: "Não tem conta? Criar conta". */
@@ -18,7 +20,8 @@ export interface AuthShellProps {
  * Casca da tela de entrada: logo, título e a coluna de botões e formulário. No
  * celular o logo fica em cima; acima de 1024px ele ocupa a coluna da esquerda.
  */
-export function AuthShell({ title, subtitle, product = 'ferinos', children, footer, className }: AuthShellProps) {
+export function AuthShell({ title, subtitle, product = 'ferinos', logo, children, footer, className }: AuthShellProps) {
+  const label = product === 'torneio' ? 'suaArena Torneios' : 'suaArena Ferinos';
   return (
     <div
       className={cn(
@@ -28,8 +31,13 @@ export function AuthShell({ title, subtitle, product = 'ferinos', children, foot
       )}
     >
       <div className="flex justify-center py-4 lg:py-0">
-        <Logo variant="vertical-dark" product={product} height={112} className="hidden dark:block lg:!h-[220px] lg:w-auto" aria-label="suaArena Ferinos" />
-        <Logo variant="horizontal-light" product={product} height={56} className="dark:hidden lg:!h-[110px] lg:w-auto" aria-label="suaArena Ferinos" />
+        {logo ?? (
+          <>
+            {/* As duas versões entram no HTML e o CSS escolhe pela classe dark do html (next-themes), sem JS. */}
+            <Logo variant="vertical-dark" product={product} height={112} className="hidden dark:block lg:!h-[220px] lg:w-auto" aria-label={label} />
+            <Logo variant="horizontal-light" product={product} height={56} className="block dark:hidden lg:!h-[110px] lg:w-auto" aria-label={label} />
+          </>
+        )}
       </div>
       <div className="flex flex-col gap-3.5">
         <div className="mb-1 text-center lg:text-left">
